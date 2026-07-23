@@ -1,0 +1,42 @@
+{
+  "name": "playwright-e2e",
+  "version": "1.0.0",
+  "description": "Playwright TypeScript e2e framework — Page Objects, fixtures, storageState, API, a11y, mocking",
+  "private": true,
+  "scripts": {
+    "test": "playwright test",
+    "test:headed": "playwright test --headed",
+    "test:ui": "playwright test --ui",
+    "test:smoke": "playwright test --grep @smoke",
+    "test:e2e": "playwright test --project=chromium",
+    "test:api": "playwright test --project=api",
+    "test:a11y": "playwright test --grep @a11y --project=chromium",
+    "test:scout": "playwright test --project=scout",
+    "test:unauthenticated": "playwright test --project=unauthenticated",
+    "test:chromium": "playwright test --project=chromium --project=unauthenticated --project=api",
+    "scout": "playwright test --project=scout",
+    "scout:browsers": "playwright test --project=scout --project=scout-firefox --project=scout-webkit",
+    "scout:report": "echo \"Open scout-report/scout-report.html in a browser\"",
+    "report": "playwright show-report",
+    "lint": "tsc --noEmit"
+  },
+  "keywords": [
+    "playwright",
+    "e2e",
+    "qa",
+    "automation",
+    "api-testing",
+    "accessibility",
+    "ui-scout",
+    "crawl"
+  ],
+  "author": "",
+  "license": "MIT",
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "^1.54.1",
+    "@types/node": "^22.16.5",
+    "dotenv": "^16.6.1",
+    "typescript": "^5.8.3"
+  }
+}
