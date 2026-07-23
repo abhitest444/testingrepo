@@ -1,0 +1,8 @@
+#!/usr/bin/env sh
+# Resolve real path so ~/.local/bin symlinks still find repo .tools/node
+SCRIPT_PATH=$0
+RESOLVED=$(readlink -f -- "$SCRIPT_PATH" 2>/dev/null) || RESOLVED=
+[ -n "$RESOLVED" ] && SCRIPT_PATH=$RESOLVED
+TOOLS_DIR=$(CDPATH= cd -- "$(dirname -- "$SCRIPT_PATH")/.." && pwd)
+export PATH="$TOOLS_DIR/node/bin:$PATH"
+exec "$TOOLS_DIR/node/bin/npm" "$@"

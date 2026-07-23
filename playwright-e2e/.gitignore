@@ -4,6 +4,7 @@ node_modules/
 /blob-report/
 /playwright/.cache/
 /scout-report/
+/scout-baselines/
 .auth/
 .env
 *.log

@@ -13,7 +13,6 @@ const authFile = path.join(__dirname, '.auth/user.json');
  * 2) e2e browsers → reuse session (fast, stable)
  * 3) unauthenticated → login/negative cases (no stored session)
  * 4) api          → Playwright request context only
- * 5) scout*       → exploratory crawl (opt-in: npm run scout)
  */
 export default defineConfig({
   testDir: './tests',
@@ -39,7 +38,7 @@ export default defineConfig({
   projects: [
     {
       name: 'setup',
-      testMatch: /.*\.setup\.ts/,
+      testMatch: /auth\/auth\.setup\.ts/,
     },
     {
       name: 'chromium',
@@ -100,40 +99,6 @@ export default defineConfig({
           Accept: 'application/json',
           'Content-Type': 'application/json',
         },
-      },
-    },
-    /**
-     * UI Scout — exploratory crawl (broken links, dead ends, UI heuristics)
-     * across mobile / tablet / desktop. Opt-in via `npm run scout`.
-     */
-    {
-      name: 'scout',
-      dependencies: ['setup'],
-      testMatch: /scout\/.*/,
-      timeout: 180_000,
-      use: {
-        ...devices['Desktop Chrome'],
-        storageState: authFile,
-      },
-    },
-    {
-      name: 'scout-firefox',
-      dependencies: ['setup'],
-      testMatch: /scout\/.*/,
-      timeout: 180_000,
-      use: {
-        ...devices['Desktop Firefox'],
-        storageState: authFile,
-      },
-    },
-    {
-      name: 'scout-webkit',
-      dependencies: ['setup'],
-      testMatch: /scout\/.*/,
-      timeout: 180_000,
-      use: {
-        ...devices['Desktop Safari'],
-        storageState: authFile,
       },
     },
   ],

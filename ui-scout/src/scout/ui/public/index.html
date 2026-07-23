@@ -1,0 +1,572 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1" />
+  <title>UI Scout</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;700&family=IBM+Plex+Mono:wght@400;600&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --bg: #10151c;
+      --panel: #182230;
+      --panel-2: #121a24;
+      --text: #e8eef7;
+      --muted: #8fa0b8;
+      --line: #2b3a4d;
+      --accent: #3ecf8e;
+      --accent-2: #5b8cff;
+      --critical: #ff6b6b;
+      --serious: #ff9f43;
+      --moderate: #f0c40f;
+      --minor: #7aa2ff;
+      --danger: #ff6b6b;
+    }
+    * { box-sizing: border-box; }
+    body {
+      margin: 0;
+      min-height: 100vh;
+      font-family: "DM Sans", sans-serif;
+      color: var(--text);
+      background:
+        radial-gradient(900px 480px at 0% -10%, #1d3a2c 0%, transparent 55%),
+        radial-gradient(800px 420px at 100% 0%, #1a2c4a 0%, transparent 50%),
+        var(--bg);
+    }
+    .wrap {
+      width: min(1200px, calc(100% - 2rem));
+      margin: 0 auto;
+      padding: 2rem 0 4rem;
+    }
+    header h1 {
+      margin: 0;
+      font-size: clamp(1.8rem, 3vw, 2.5rem);
+      letter-spacing: -0.03em;
+    }
+    header p {
+      margin: 0.4rem 0 0;
+      color: var(--muted);
+      max-width: 40rem;
+    }
+    .grid {
+      display: grid;
+      grid-template-columns: 320px 1fr;
+      gap: 1rem;
+      margin-top: 1.75rem;
+    }
+    @media (max-width: 900px) {
+      .grid { grid-template-columns: 1fr; }
+    }
+    .panel {
+      background: color-mix(in srgb, var(--panel) 92%, black);
+      border: 1px solid var(--line);
+      border-radius: 14px;
+      padding: 1rem 1.1rem 1.15rem;
+    }
+    .panel h2 {
+      margin: 0 0 0.9rem;
+      font-size: 0.78rem;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--muted);
+    }
+    label {
+      display: block;
+      font-size: 0.8rem;
+      color: var(--muted);
+      margin: 0.7rem 0 0.3rem;
+    }
+    input, select {
+      width: 100%;
+      border: 1px solid var(--line);
+      background: var(--panel-2);
+      color: var(--text);
+      border-radius: 8px;
+      padding: 0.55rem 0.65rem;
+      font: inherit;
+    }
+    .checks {
+      display: grid;
+      gap: 0.45rem;
+      margin-top: 0.9rem;
+    }
+    .checks label {
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+      margin: 0;
+      color: var(--text);
+      font-size: 0.92rem;
+    }
+    .checks input { width: auto; }
+    .actions {
+      display: grid;
+      gap: 0.55rem;
+      margin-top: 1rem;
+    }
+    button {
+      border: 0;
+      border-radius: 10px;
+      padding: 0.7rem 0.9rem;
+      font: inherit;
+      font-weight: 700;
+      cursor: pointer;
+    }
+    button.primary {
+      background: var(--accent);
+      color: #062416;
+    }
+    button.primary:disabled {
+      opacity: 0.55;
+      cursor: not-allowed;
+    }
+    button.ghost {
+      background: transparent;
+      color: var(--text);
+      border: 1px solid var(--line);
+    }
+    .status {
+      margin-top: 0.9rem;
+      font-size: 0.85rem;
+      color: var(--muted);
+    }
+    .status strong { color: var(--text); }
+    .stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(110px, 1fr));
+      gap: 0.55rem;
+      margin-bottom: 1rem;
+    }
+    .stats div {
+      background: var(--panel-2);
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.7rem 0.8rem;
+    }
+    .stats strong { display: block; font-size: 1.35rem; }
+    .stats span {
+      color: var(--muted);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    .tabs {
+      display: flex;
+      gap: 0.4rem;
+      margin-bottom: 0.8rem;
+      flex-wrap: wrap;
+    }
+    .tabs button {
+      background: transparent;
+      border: 1px solid var(--line);
+      color: var(--muted);
+      font-weight: 500;
+      padding: 0.4rem 0.7rem;
+      border-radius: 999px;
+    }
+    .tabs button.active {
+      color: var(--text);
+      border-color: var(--accent-2);
+      background: color-mix(in srgb, var(--accent-2) 18%, transparent);
+    }
+    table {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 0.88rem;
+    }
+    th, td {
+      text-align: left;
+      padding: 0.5rem 0.45rem;
+      border-bottom: 1px solid var(--line);
+      vertical-align: top;
+    }
+    th {
+      color: var(--muted);
+      font-size: 0.72rem;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    code {
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.78rem;
+      word-break: break-all;
+    }
+    .badge {
+      display: inline-block;
+      padding: 0.12rem 0.45rem;
+      border-radius: 999px;
+      font-size: 0.7rem;
+      font-weight: 700;
+      text-transform: uppercase;
+    }
+    .sev-critical { background: color-mix(in srgb, var(--critical) 22%, transparent); color: var(--critical); }
+    .sev-serious { background: color-mix(in srgb, var(--serious) 22%, transparent); color: var(--serious); }
+    .sev-moderate { background: color-mix(in srgb, var(--moderate) 20%, transparent); color: var(--moderate); }
+    .sev-minor { background: color-mix(in srgb, var(--minor) 20%, transparent); color: var(--minor); }
+    .log {
+      height: 220px;
+      overflow: auto;
+      background: #0b1017;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      padding: 0.7rem;
+      font-family: "IBM Plex Mono", ui-monospace, monospace;
+      font-size: 0.75rem;
+      white-space: pre-wrap;
+      color: #c7d3e4;
+    }
+    .gallery {
+      display: grid;
+      grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+      gap: 0.75rem;
+    }
+    .shot {
+      margin: 0;
+      border: 1px solid var(--line);
+      border-radius: 10px;
+      overflow: hidden;
+      background: #0b1017;
+    }
+    .shot img {
+      display: block;
+      width: 100%;
+      height: 130px;
+      object-fit: cover;
+      object-position: top;
+    }
+    .shot figcaption {
+      padding: 0.5rem 0.6rem 0.65rem;
+      color: var(--muted);
+      font-size: 0.75rem;
+    }
+    .empty {
+      color: var(--muted);
+      padding: 1rem 0.2rem;
+    }
+    .hidden { display: none; }
+  </style>
+</head>
+<body>
+  <div class="wrap">
+    <header>
+      <h1>UI Scout</h1>
+      <p>Point Scout at any site with BASE_URL + start path. Use auth mode <code>none</code> for public apps or <code>form</code> for a generic login.</p>
+    </header>
+
+    <div class="grid">
+      <aside class="panel">
+        <h2>Scan setup</h2>
+        <label for="baseUrl">Website (BASE_URL)</label>
+        <input id="baseUrl" type="url" value="https://www.saucedemo.com" placeholder="https://your-app.example.com" />
+
+        <label for="authMode">Auth mode</label>
+        <select id="authMode">
+          <option value="auto" selected>auto (sauce on Sauce Demo, else none)</option>
+          <option value="none">none — public site, no login</option>
+          <option value="form">form — generic username/password</option>
+          <option value="sauce">sauce — Sauce Demo POM login</option>
+        </select>
+
+        <div id="formAuthFields" class="hidden">
+          <label for="loginPath">Login path</label>
+          <input id="loginPath" value="/login" placeholder="/login" />
+          <label for="username">Username</label>
+          <input id="username" autocomplete="username" />
+          <label for="password">Password</label>
+          <input id="password" type="password" autocomplete="current-password" />
+          <label for="userSelector">Username selector</label>
+          <input id="userSelector" placeholder="#username or input[name=email]" />
+          <label for="passwordSelector">Password selector</label>
+          <input id="passwordSelector" placeholder="#password" />
+          <label for="submitSelector">Submit selector</label>
+          <input id="submitSelector" value='button[type="submit"]' />
+          <label for="successUrl">Success URL pattern (optional)</label>
+          <input id="successUrl" placeholder="dashboard|home" />
+        </div>
+
+        <label for="viewports">Viewports</label>
+        <select id="viewports">
+          <option value="desktop">desktop</option>
+          <option value="mobile,desktop" selected>mobile + desktop</option>
+          <option value="mobile,tablet,desktop">mobile + tablet + desktop</option>
+          <option value="mobile">mobile</option>
+        </select>
+
+        <label for="maxPages">Max pages</label>
+        <input id="maxPages" type="number" min="1" max="50" value="8" />
+
+        <label for="startPath">Start path</label>
+        <input id="startPath" value="/inventory.html" placeholder="/" />
+
+        <label for="seedPaths">Seed paths (comma-separated)</label>
+        <input id="seedPaths" value="" placeholder="/,/about (optional)" />
+
+        <div class="checks">
+          <label><input id="a11y" type="checkbox" checked /> Axe accessibility</label>
+          <label><input id="visual" type="checkbox" checked /> Visual baseline diffs</label>
+          <label><input id="updateBaselines" type="checkbox" /> Update visual baselines</label>
+        </div>
+
+        <div class="actions">
+          <button class="primary" id="runBtn">Run scan</button>
+          <button class="ghost" id="reloadBtn" type="button">Refresh findings</button>
+          <a class="ghost" id="openReport" href="/report" target="_blank" rel="noreferrer" style="text-align:center;text-decoration:none;padding:0.7rem 0.9rem;border-radius:10px;border:1px solid var(--line);display:block;">Open HTML report</a>
+        </div>
+        <div class="status" id="status">Idle</div>
+      </aside>
+
+      <main>
+        <section class="panel">
+          <h2>Summary</h2>
+          <div class="stats" id="stats">
+            <div><strong>—</strong><span>pages</span></div>
+            <div><strong>—</strong><span>issues</span></div>
+            <div><strong>—</strong><span>critical</span></div>
+            <div><strong>—</strong><span>a11y</span></div>
+            <div><strong>—</strong><span>visual</span></div>
+          </div>
+          <div class="tabs">
+            <button type="button" class="active" data-tab="issues">Issues</button>
+            <button type="button" data-tab="pages">Pages</button>
+            <button type="button" data-tab="shots">Screenshots</button>
+            <button type="button" data-tab="log">Live log</button>
+          </div>
+
+          <div id="tab-issues">
+            <div id="issuesEmpty" class="empty">No report yet. Run a scan to populate findings.</div>
+            <table class="hidden" id="issuesTable">
+              <thead>
+                <tr><th>Severity</th><th>Category</th><th>Message</th><th>Page</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div id="tab-pages" class="hidden">
+            <table id="pagesTable">
+              <thead>
+                <tr><th>Viewport</th><th>URL</th><th>Title</th><th>Issues</th></tr>
+              </thead>
+              <tbody></tbody>
+            </table>
+          </div>
+
+          <div id="tab-shots" class="hidden">
+            <div class="gallery" id="gallery"></div>
+          </div>
+
+          <div id="tab-log" class="hidden">
+            <div class="log" id="log"></div>
+          </div>
+        </section>
+      </main>
+    </div>
+  </div>
+
+  <script>
+    const els = {
+      runBtn: document.getElementById('runBtn'),
+      reloadBtn: document.getElementById('reloadBtn'),
+      status: document.getElementById('status'),
+      stats: document.getElementById('stats'),
+      issuesTable: document.getElementById('issuesTable'),
+      issuesEmpty: document.getElementById('issuesEmpty'),
+      pagesTable: document.getElementById('pagesTable').querySelector('tbody'),
+      gallery: document.getElementById('gallery'),
+      log: document.getElementById('log'),
+    };
+
+    function setStatus(state) {
+      if (state.running) {
+        els.status.innerHTML = `<strong>Running</strong> · started ${state.startedAt || ''}`;
+        els.runBtn.disabled = true;
+        els.runBtn.textContent = 'Scanning…';
+      } else if (state.finishedAt) {
+        const code = state.exitCode;
+        const label = code === 0 ? 'passed' : `exit ${code}`;
+        els.status.innerHTML = `<strong>Finished</strong> (${label}) · ${state.finishedAt}`;
+        els.runBtn.disabled = false;
+        els.runBtn.textContent = 'Run scan';
+      } else {
+        els.status.textContent = 'Idle';
+        els.runBtn.disabled = false;
+        els.runBtn.textContent = 'Run scan';
+      }
+    }
+
+    function appendLog(line) {
+      els.log.textContent += line + '\n';
+      els.log.scrollTop = els.log.scrollHeight;
+    }
+
+    function renderReport(report) {
+      const totals = report.totals || {};
+      els.stats.innerHTML = `
+        <div><strong>${totals.pages ?? 0}</strong><span>pages</span></div>
+        <div><strong>${totals.issues ?? 0}</strong><span>issues</span></div>
+        <div><strong>${totals.critical ?? 0}</strong><span>critical</span></div>
+        <div><strong>${totals.a11y ?? 0}</strong><span>a11y</span></div>
+        <div><strong>${totals.visual ?? 0}</strong><span>visual</span></div>
+      `;
+
+      const issues = (report.results || []).flatMap((run) =>
+        (run.issues || []).map((issue) => ({ ...issue, viewport: run.viewport?.name }))
+      );
+
+      const tbody = els.issuesTable.querySelector('tbody');
+      tbody.innerHTML = '';
+      if (!issues.length) {
+        els.issuesEmpty.classList.remove('hidden');
+        els.issuesTable.classList.add('hidden');
+        els.issuesEmpty.textContent = 'Scan completed with no recorded issues.';
+      } else {
+        els.issuesEmpty.classList.add('hidden');
+        els.issuesTable.classList.remove('hidden');
+        for (const issue of issues.slice(0, 300)) {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td><span class="badge sev-${issue.severity}">${issue.severity}</span></td>
+            <td>${issue.category}</td>
+            <td>${escapeHtml(issue.message)}</td>
+            <td><code>${escapeHtml(issue.url)}</code></td>`;
+          tbody.appendChild(tr);
+        }
+      }
+
+      els.pagesTable.innerHTML = '';
+      for (const run of report.results || []) {
+        for (const page of run.pagesVisited || []) {
+          const tr = document.createElement('tr');
+          tr.innerHTML = `
+            <td>${run.viewport?.name || ''}</td>
+            <td><code>${escapeHtml(page.url)}</code></td>
+            <td>${escapeHtml(page.title || '')}</td>
+            <td>${(page.issues || []).length}</td>`;
+          els.pagesTable.appendChild(tr);
+        }
+      }
+
+      els.gallery.innerHTML = '';
+      for (const run of report.results || []) {
+        for (const page of run.pagesVisited || []) {
+          if (!page.screenshotPath) continue;
+          const name = page.screenshotPath.split(/[\\/]/).pop();
+          const diffName = page.diffPath ? page.diffPath.split(/[\\/]/).pop() : null;
+          const fig = document.createElement('figure');
+          fig.className = 'shot';
+          fig.innerHTML = `
+            <a href="/files/screenshots/${encodeURIComponent(name)}" target="_blank" rel="noreferrer">
+              <img src="/files/screenshots/${encodeURIComponent(name)}" alt="" loading="lazy" />
+            </a>
+            <figcaption>
+              ${run.viewport?.name || ''} · <code>${escapeHtml(page.url)}</code>
+              ${diffName ? `<div><a href="/files/diffs/${encodeURIComponent(diffName)}" target="_blank" rel="noreferrer">diff</a></div>` : ''}
+            </figcaption>`;
+          els.gallery.appendChild(fig);
+        }
+      }
+    }
+
+    function escapeHtml(value) {
+      return String(value)
+        .replaceAll('&', '&amp;')
+        .replaceAll('<', '&lt;')
+        .replaceAll('>', '&gt;')
+        .replaceAll('"', '&quot;');
+    }
+
+    async function loadReport() {
+      const res = await fetch('/api/report');
+      if (!res.ok) return;
+      renderReport(await res.json());
+    }
+
+    document.querySelectorAll('.tabs button').forEach((btn) => {
+      btn.addEventListener('click', () => {
+        document.querySelectorAll('.tabs button').forEach((b) => b.classList.remove('active'));
+        btn.classList.add('active');
+        ['issues', 'pages', 'shots', 'log'].forEach((name) => {
+          document.getElementById(`tab-${name}`).classList.toggle('hidden', btn.dataset.tab !== name);
+        });
+      });
+    });
+
+    els.runBtn.addEventListener('click', async () => {
+      const authMode = document.getElementById('authMode').value;
+      const body = {
+        baseUrl: document.getElementById('baseUrl').value || 'https://www.saucedemo.com',
+        authMode,
+        viewports: document.getElementById('viewports').value,
+        maxPages: Number(document.getElementById('maxPages').value || 8),
+        startPath: document.getElementById('startPath').value || '/',
+        seedPaths: document.getElementById('seedPaths').value || undefined,
+        a11y: document.getElementById('a11y').checked,
+        visual: document.getElementById('visual').checked,
+        updateBaselines: document.getElementById('updateBaselines').checked,
+      };
+      if (authMode === 'form') {
+        body.loginPath = document.getElementById('loginPath').value || '/';
+        body.username = document.getElementById('username').value;
+        body.password = document.getElementById('password').value;
+        body.userSelector = document.getElementById('userSelector').value;
+        body.passwordSelector = document.getElementById('passwordSelector').value;
+        body.submitSelector = document.getElementById('submitSelector').value;
+        body.successUrl = document.getElementById('successUrl').value || undefined;
+      }
+      els.log.textContent = '';
+      const res = await fetch('/api/run', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify(body),
+      });
+      const data = await res.json();
+      if (!res.ok) {
+        appendLog(data.error || 'Failed to start scan');
+        return;
+      }
+      setStatus(data.state);
+    });
+
+    const authModeEl = document.getElementById('authMode');
+    const formAuthFields = document.getElementById('formAuthFields');
+    const startPathEl = document.getElementById('startPath');
+    const baseUrlEl = document.getElementById('baseUrl');
+
+    function syncAuthFields() {
+      formAuthFields.classList.toggle('hidden', authModeEl.value !== 'form');
+    }
+
+    function syncDefaultsForSite() {
+      const base = baseUrlEl.value || '';
+      const sauce = /saucedemo\.com/i.test(base);
+      if (!startPathEl.dataset.touched) {
+        startPathEl.value = sauce ? '/inventory.html' : '/';
+      }
+    }
+
+    startPathEl.addEventListener('input', () => {
+      startPathEl.dataset.touched = '1';
+    });
+    authModeEl.addEventListener('change', syncAuthFields);
+    baseUrlEl.addEventListener('change', syncDefaultsForSite);
+    syncAuthFields();
+    syncDefaultsForSite();
+
+    els.reloadBtn.addEventListener('click', () => loadReport());
+
+    const events = new EventSource('/api/events');
+    events.onmessage = (event) => {
+      const msg = JSON.parse(event.data);
+      if (msg.type === 'log') appendLog(msg.line);
+      if (msg.type === 'status') {
+        setStatus(msg.state);
+        if (!msg.state.running && msg.state.finishedAt) loadReport();
+      }
+    };
+
+    fetch('/api/status').then((r) => r.json()).then(setStatus);
+    loadReport();
+  </script>
+</body>
+</html>

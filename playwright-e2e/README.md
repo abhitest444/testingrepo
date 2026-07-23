@@ -19,7 +19,7 @@ These are public demo systems, so occasional upstream downtime or data quirks ar
 | **API testing via `request`** | `src/api/`, `tests/api/` |
 | **Network mocking (`route.fulfill`)** | `tests/network/` |
 | **Accessibility (axe)** | `tests/a11y/` |
-| **UI Scout (crawl / broken links / UI heuristics)** | `src/scout/`, `tests/scout/` |
+| **UI Scout** | now lives in the standalone sibling project `../ui-scout` |
 | **`test.step` for readable reports** | checkout + API specs |
 | Smoke tagging (`@smoke`) | specs |
 | Multi-browser + CI artifacts | `playwright.config.ts`, GitHub Actions |
@@ -41,22 +41,22 @@ npm test                 # all projects (incl. firefox/webkit)
 npm run test:e2e         # authenticated Chromium e2e (runs setup first)
 npm run test:api         # Restful Booker API suite
 npm run test:a11y        # axe scans
-npm run test:scout       # exploratory UI crawl (alias: npm run scout)
-npm run scout:browsers   # scout on chromium + firefox + webkit
 npm run test:unauthenticated  # login + network mocking
 npm run test:smoke       # @smoke across matching projects
 npm run test:ui          # Playwright UI mode
-npm run scout            # UI Scout crawl (mobile/tablet/desktop)
-npm run scout:browsers   # Scout on Chromium + Firefox + WebKit
 npm run report           # open HTML report
 npm run lint             # TypeScript check
 ```
 
-### UI Scout
+### Standalone UI Scout
 
-Exploratory crawl that finds broken links, dead ends, console/network failures, broken images, and layout issues across viewports. Writes `scout-report/scout-report.html`.
+UI Scout now lives in the standalone sibling project at `../ui-scout`.
 
-See [`docs/ui-scout.md`](./docs/ui-scout.md).
+```bash
+cd ../ui-scout
+npm install
+npm run scout:ui   # http://localhost:4177
+```
 
 ## Project layout
 
@@ -103,8 +103,8 @@ This is the same pattern used in large suites: faster tests, less flaky login, c
 3. **Mocking for determinism** — `route.fulfill` proves you can isolate UI from backend failures.
 4. **axe in CI mindset** — attach full JSON; fail on `critical` impact (serious/moderate can be phased in).
 5. **Cleanup discipline** — API data created during tests is deleted in `finally`, so failures do not leave stale state.
-6. **UI Scout** — on-demand crawl for broken links, console/network errors, layout overflow, and weak controls across viewports (`npm run test:scout`).
-7. **Next upgrades** — visual snapshots, sharding, Allure, component testing, trace viewer walkthrough in README.
+6. **Standalone UI Scout** — crawl with axe + visual diffs + local dashboard in the sibling project.
+7. **Next upgrades** — sharding, Allure, component testing, trace viewer walkthrough in README.
 
 ## Test Strategy
 
@@ -113,4 +113,4 @@ See [`docs/test-strategy.md`](./docs/test-strategy.md) for the risk model, suite
 ## CI
 
 Workflow: `../.github/workflows/playwright.yml`  
-Typechecks, then runs Chromium e2e + unauthenticated + API; uploads the HTML report. UI Scout stays opt-in (`npm run scout`).
+Typechecks, then runs Chromium e2e + unauthenticated + API; uploads the HTML report.

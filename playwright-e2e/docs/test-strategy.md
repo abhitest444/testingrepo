@@ -11,8 +11,8 @@ This project is designed to show practical SDET judgment: fast feedback for pull
 | Chromium portfolio suite | `npm run test:chromium` | CI-friendly browser/API coverage without installing every browser. |
 | API | `npm run test:api` | Validate REST workflows, status handling, and cleanup discipline. |
 | Accessibility | `npm run test:a11y` | Run axe scans and attach full JSON reports for review. |
-| UI Scout | `npm run test:scout` | Exploratory crawl across viewports; HTML/JSON report for broken links and UI defects. |
-| Full local regression | `npm test` | Run all configured projects, including Firefox and WebKit (scout remains a separate project). |
+| UI Scout | `npm run scout` / `npm run scout:ui` | Crawl across viewports; axe + visual diffs; HTML/JSON report and local dashboard. |
+| Full local regression | `npm test` | Run all configured projects, including Firefox and WebKit (scout is a separate config). |
 
 ## Risk Model
 
@@ -36,7 +36,7 @@ The CI suite prioritizes reliable, reviewable feedback:
 - Run the Chromium portfolio suite for browser, unauthenticated, network, and API coverage.
 - Upload Playwright HTML reports as artifacts.
 - Keep traces, screenshots, and videos for failure investigation.
-- Keep UI Scout out of the default PR job (run via `npm run test:scout` or a scheduled workflow later).
+- Keep UI Scout out of the default PR job (run via `npm run scout` or a scheduled workflow later).
 
 Future upgrades worth adding:
 

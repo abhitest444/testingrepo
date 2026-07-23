@@ -1,0 +1,27 @@
+{
+  "name": "ui-scout",
+  "version": "1.0.0",
+  "description": "Standalone UI Scout exploratory crawler and dashboard",
+  "private": true,
+  "scripts": {
+    "test": "playwright test --config=playwright.scout.config.ts --project=scout",
+    "test:ui": "playwright test --config=playwright.scout.config.ts --project=scout --ui",
+    "scout": "playwright test --config=playwright.scout.config.ts --project=scout",
+    "scout:browsers": "playwright test --config=playwright.scout.config.ts",
+    "scout:ui": "tsx src/scout/ui/server.ts",
+    "scout:baselines": "SCOUT_UPDATE_BASELINES=true playwright test --config=playwright.scout.config.ts --project=scout",
+    "lint": "tsc --noEmit"
+  },
+  "devDependencies": {
+    "@axe-core/playwright": "^4.10.2",
+    "@playwright/test": "^1.54.1",
+    "@types/node": "^22.16.5",
+    "@types/pixelmatch": "^5.2.6",
+    "@types/pngjs": "^6.0.5",
+    "dotenv": "^16.6.1",
+    "pixelmatch": "^5.3.0",
+    "pngjs": "^7.0.0",
+    "tsx": "^4.23.1",
+    "typescript": "^5.8.3"
+  }
+}
