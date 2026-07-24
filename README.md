@@ -10,7 +10,7 @@
 | [ui-scout](./ui-scout) | Standalone UI Scout crawl, axe, visual diffs, dashboard | Active |
 | Dedicated API framework | Contract/schema REST automation beyond Playwright request | Planned |
 | Performance | k6 load & thresholds | Planned |
-| CI/CD deep dive | Pipelines, sharding, quality gates | In progress (see Playwright workflow) |
+| CI/CD deep dive | Pipelines, sharding, quality gates | Active (see Playwright workflow; nightly matrix still planned) |
 
 ## Start here
 
@@ -18,8 +18,29 @@
 cd playwright-e2e
 npm install
 npx playwright install --with-deps chromium
-npm run test:chromium   # recommended first run (setup + e2e + login/network + api)
+npm run test:smoke:portfolio   # start here — login, cart, checkout, mock, API smoke
+npm run test:chromium          # then go broader (full Chromium portfolio)
 ```
+
+`test:smoke:portfolio` is the short demo path. Mobile, a11y, visual, Cucumber, and Allure live in the same project — run them next when you want depth:
+
+```bash
+npm run test:mobile
+npm run test:a11y
+npm run test:visual
+npm run test:cucumber:smoke
+npm run allure:serve
+```
+
+## Recruiter-facing story
+
+This repo is intentionally built to show signal, not noise:
+
+- **Fast proof first** — `test:smoke:portfolio` shows auth, cart/checkout, network mocking, and API lifecycle in one short run
+- **Maintainable structure** — page objects + shared fixtures (not copy-paste specs)
+- **Realistic multi-project flow** — `storageState` setup feeding authenticated browser projects
+- **Depth on demand** — mobile, accessibility, visual snapshots, clock/soft-assert demos, and Cucumber BDD in the same codebase
+- **Reviewable outputs** — Playwright HTML reports, traces on failure, and Allure for stakeholder-friendly narrative
 
 ## Skills roadmap
 
@@ -28,9 +49,10 @@ npm run test:chromium   # recommended first run (setup + e2e + login/network + a
 - [x] Playwright deeper (visual snapshots, soft asserts, clock, mobile project, Allure, sharded CI)
 - [x] Cucumber BDD (features, outlines, data tables, World, hooks)
 - [x] UI Scout (crawl, axe, visual diffs, local dashboard)
+- [x] CI patterns (lint gate, sharded Chromium, mobile + cucumber jobs, Allure artifact)
 - [ ] Dedicated API project (beyond Playwright request)
 - [ ] Performance testing
-- [ ] Broader CI/CD patterns (sharding, quality gates)
+- [ ] Deeper CI (nightly Firefox/WebKit matrix, Scout schedule, Allure history)
 
 ---
 

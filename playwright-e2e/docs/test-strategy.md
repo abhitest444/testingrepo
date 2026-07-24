@@ -7,8 +7,9 @@ This project is designed to show practical SDET judgment: fast feedback for pull
 | Suite | Command | Purpose |
 | --- | --- | --- |
 | Type check | `npm run lint` | Catch TypeScript and framework contract errors before runtime. |
-| Smoke | `npm run test:smoke` | Small, high-value checks for login, checkout, API auth, API lifecycle, and mocked UI behavior. |
-| Chromium portfolio suite | `npm run test:chromium` | CI-friendly browser/API coverage without installing every browser. |
+| Portfolio smoke | `npm run test:smoke:portfolio` | Short demo path: login, cart, checkout, network mock, API smoke (Chromium projects only). |
+| Smoke (all matching projects) | `npm run test:smoke` | `@smoke` across whichever projects are selected / default. |
+| Chromium portfolio suite | `npm run test:chromium` | Broader browser/API coverage without installing every browser. |
 | Mobile | `npm run test:mobile` | Pixel 5 device emulation for layout/touch risk. |
 | Visual | `npm run test:visual` | Playwright screenshot baselines (`toHaveScreenshot`). |
 | Advanced | `npm run test:advanced` | Soft assertions, clock control, and visual demos. |

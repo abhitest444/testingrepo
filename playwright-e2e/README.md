@@ -37,8 +37,11 @@ cd playwright-e2e
 npm install
 npx playwright install --with-deps
 cp .env.example .env   # optional
-npm run test:chromium  # setup + e2e + login/network + api (recommended locally)
+npm run test:smoke:portfolio  # start here — login, cart, checkout, mock, API smoke
+npm run test:chromium         # then go broader (full Chromium portfolio)
 ```
+
+`test:smoke:portfolio` is the short proof run. Mobile, a11y, visual, Cucumber, and Allure are in this same project — use the scripts below when you want depth.
 
 ### Useful scripts
 
@@ -53,6 +56,7 @@ npm run test:visual:update  # refresh visual baselines
 npm run test:advanced    # soft asserts + clock + visual
 npm run test:unauthenticated  # login + network mocking
 npm run test:smoke       # @smoke across matching projects
+npm run test:smoke:portfolio  # short demo path (login/cart/checkout/mock/API)
 npm run test:ui          # Playwright UI mode
 npm run test:cucumber    # Gherkin / Cucumber BDD scenarios
 npm run test:cucumber:smoke  # @smoke cucumber scenarios

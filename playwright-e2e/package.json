@@ -8,6 +8,7 @@
     "test:headed": "playwright test --headed",
     "test:ui": "playwright test --ui",
     "test:smoke": "playwright test --grep @smoke",
+    "test:smoke:portfolio": "playwright test --project=chromium --project=unauthenticated --project=api --grep @smoke",
     "test:e2e": "playwright test --project=chromium",
     "test:api": "playwright test --project=api",
     "test:a11y": "playwright test --grep @a11y --project=chromium",
