@@ -5,6 +5,9 @@ node_modules/
 /playwright/.cache/
 /scout-report/
 /scout-baselines/
+/cucumber-report/
+/allure-results/
+/allure-report/
 .auth/
 .env
 *.log

@@ -6,7 +6,7 @@
 
 | Project | Focus | Status |
 | --- | --- | --- |
-| [playwright-e2e](./playwright-e2e) | Playwright + TS: POM, storageState, API, mocking, a11y, CI | Active |
+| [playwright-e2e](./playwright-e2e) | Playwright + TS: POM, storageState, API, mocking, a11y, visual, Allure, Cucumber, sharded CI | Active |
 | [ui-scout](./ui-scout) | Standalone UI Scout crawl, axe, visual diffs, dashboard | Active |
 | Dedicated API framework | Contract/schema REST automation beyond Playwright request | Planned |
 | Performance | k6 load & thresholds | Planned |
@@ -25,6 +25,8 @@ npm run test:chromium   # recommended first run (setup + e2e + login/network + a
 
 - [x] Playwright foundation (POM, fixtures, multi-browser, CI)
 - [x] Playwright advanced (storageState, API client, network mocking, axe a11y, test.step)
+- [x] Playwright deeper (visual snapshots, soft asserts, clock, mobile project, Allure, sharded CI)
+- [x] Cucumber BDD (features, outlines, data tables, World, hooks)
 - [x] UI Scout (crawl, axe, visual diffs, local dashboard)
 - [ ] Dedicated API project (beyond Playwright request)
 - [ ] Performance testing

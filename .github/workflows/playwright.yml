@@ -12,36 +12,141 @@ on:
       - '.github/workflows/playwright.yml'
 
 jobs:
-  test:
-    timeout-minutes: 30
+  lint:
     runs-on: ubuntu-latest
     defaults:
       run:
         working-directory: playwright-e2e
     steps:
       - uses: actions/checkout@v4
-
       - uses: actions/setup-node@v4
         with:
           node-version: 22
           cache: npm
           cache-dependency-path: playwright-e2e/package-lock.json
+      - run: npm ci
+      - run: npm run lint
 
-      - name: Install dependencies
-        run: npm ci
-
-      - name: Typecheck
-        run: npm run lint
-
-      - name: Install Playwright browsers
-        run: npx playwright install --with-deps chromium
-
-      - name: Run Chromium portfolio suite
-        run: npm run test:chromium
-
+  chromium:
+    needs: lint
+    timeout-minutes: 30
+    runs-on: ubuntu-latest
+    strategy:
+      fail-fast: false
+      matrix:
+        shardIndex: [1, 2]
+        shardTotal: [2]
+    defaults:
+      run:
+        working-directory: playwright-e2e
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: playwright-e2e/package-lock.json
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Run Chromium portfolio suite (shard ${{ matrix.shardIndex }}/${{ matrix.shardTotal }})
+        run: npx playwright test --project=chromium --project=unauthenticated --project=api --shard=${{ matrix.shardIndex }}/${{ matrix.shardTotal }}
       - uses: actions/upload-artifact@v4
         if: ${{ !cancelled() }}
         with:
-          name: playwright-report
+          name: playwright-report-shard-${{ matrix.shardIndex }}
           path: playwright-e2e/playwright-report/
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: allure-results-shard-${{ matrix.shardIndex }}
+          path: playwright-e2e/allure-results/
+          retention-days: 14
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: test-results-shard-${{ matrix.shardIndex }}
+          path: playwright-e2e/test-results/
+          retention-days: 7
+
+  mobile:
+    needs: lint
+    timeout-minutes: 20
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: playwright-e2e
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: playwright-e2e/package-lock.json
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Run mobile (Pixel 5) suite
+        run: npx playwright test --project=mobile-chrome
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: playwright-report-mobile
+          path: playwright-e2e/playwright-report/
+          retention-days: 14
+
+  cucumber:
+    needs: lint
+    timeout-minutes: 20
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: playwright-e2e
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: playwright-e2e/package-lock.json
+      - run: npm ci
+      - run: npx playwright install --with-deps chromium
+      - name: Run Cucumber smoke
+        run: npm run test:cucumber:smoke
+      - uses: actions/upload-artifact@v4
+        if: ${{ !cancelled() }}
+        with:
+          name: cucumber-report
+          path: playwright-e2e/cucumber-report/
+          retention-days: 14
+
+  allure:
+    needs: [chromium, mobile]
+    if: ${{ !cancelled() }}
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: playwright-e2e
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: playwright-e2e/package-lock.json
+      - run: npm ci
+      - name: Download Allure results
+        uses: actions/download-artifact@v4
+        with:
+          pattern: allure-results-shard-*
+          path: playwright-e2e/allure-results-merged
+          merge-multiple: true
+      - name: Generate Allure report
+        run: |
+          mkdir -p allure-results
+          cp -r allure-results-merged/. allure-results/ || true
+          npm run allure:generate
+      - uses: actions/upload-artifact@v4
+        with:
+          name: allure-report
+          path: playwright-e2e/allure-report/
           retention-days: 14

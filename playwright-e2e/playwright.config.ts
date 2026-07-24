@@ -6,30 +6,57 @@ dotenv.config();
 
 const baseURL = process.env.BASE_URL ?? 'https://www.saucedemo.com';
 const authFile = path.join(__dirname, '.auth/user.json');
+const isCI = !!process.env.CI;
+
+const desktopIgnore = [
+  /.*\.setup\.ts/,
+  /auth\/login\.spec\.ts/,
+  /api\/.*/,
+  /network\/.*/,
+  /advanced\/clock\.spec\.ts/,
+];
 
 /**
  * Project topology (expert pattern):
- * 1) setup        → login once, write storageState
- * 2) e2e browsers → reuse session (fast, stable)
- * 3) unauthenticated → login/negative cases (no stored session)
- * 4) api          → Playwright request context only
+ * 1) setup             → login once, write storageState
+ * 2) chromium/firefox/webkit → authenticated e2e
+ * 3) mobile-chrome     → Pixel 5 device emulation
+ * 4) unauthenticated   → login negatives + network + clock demos
+ * 5) api               → Playwright request context only
  */
 export default defineConfig({
   testDir: './tests',
   fullyParallel: true,
-  forbidOnly: !!process.env.CI,
-  retries: process.env.CI ? 2 : 0,
-  workers: process.env.CI ? 2 : undefined,
+  forbidOnly: isCI,
+  retries: isCI ? 2 : 0,
+  workers: isCI ? 2 : undefined,
   reporter: [
     ['list'],
     ['html', { open: 'never' }],
-    ...(process.env.CI ? [['github'] as const] : []),
+    [
+      'allure-playwright',
+      {
+        detail: true,
+        outputFolder: 'allure-results',
+        suiteTitle: true,
+      },
+    ],
+    ...(isCI ? [['github'] as const] : []),
   ],
   timeout: 30_000,
-  expect: { timeout: 10_000 },
+  expect: {
+    timeout: 10_000,
+    toHaveScreenshot: {
+      maxDiffPixelRatio: 0.02,
+      animations: 'disabled',
+    },
+  },
   use: {
     baseURL,
-    trace: 'on-first-retry',
+    // Sauce Demo (and many apps) use data-test instead of data-testid.
+    testIdAttribute: 'data-test',
+    // retain-on-failure keeps a trace for every failed attempt (great for demos/CI).
+    trace: 'retain-on-failure',
     screenshot: 'only-on-failure',
     video: 'retain-on-failure',
     actionTimeout: 10_000,
@@ -47,13 +74,7 @@ export default defineConfig({
         ...devices['Desktop Chrome'],
         storageState: authFile,
       },
-      testIgnore: [
-        /.*\.setup\.ts/,
-        /auth\/login\.spec\.ts/,
-        /api\/.*/,
-        /network\/.*/,
-        /scout\/.*/,
-      ],
+      testIgnore: desktopIgnore,
     },
     {
       name: 'firefox',
@@ -62,13 +83,8 @@ export default defineConfig({
         ...devices['Desktop Firefox'],
         storageState: authFile,
       },
-      testIgnore: [
-        /.*\.setup\.ts/,
-        /auth\/login\.spec\.ts/,
-        /api\/.*/,
-        /network\/.*/,
-        /scout\/.*/,
-      ],
+      // Skip visual on non-Chromium to avoid cross-engine baseline churn.
+      testIgnore: [...desktopIgnore, /visual\/.*/],
     },
     {
       name: 'webkit',
@@ -77,18 +93,21 @@ export default defineConfig({
         ...devices['Desktop Safari'],
         storageState: authFile,
       },
-      testIgnore: [
-        /.*\.setup\.ts/,
-        /auth\/login\.spec\.ts/,
-        /api\/.*/,
-        /network\/.*/,
-        /scout\/.*/,
-      ],
+      testIgnore: [...desktopIgnore, /visual\/.*/],
+    },
+    {
+      name: 'mobile-chrome',
+      dependencies: ['setup'],
+      use: {
+        ...devices['Pixel 5'],
+        storageState: authFile,
+      },
+      testMatch: /inventory\/.*\.spec\.ts|advanced\/soft-assertions\.spec\.ts/,
     },
     {
       name: 'unauthenticated',
       use: { ...devices['Desktop Chrome'] },
-      testMatch: /auth\/login\.spec\.ts|network\/.*/,
+      testMatch: /auth\/login\.spec\.ts|network\/.*|advanced\/clock\.spec\.ts/,
     },
     {
       name: 'api',

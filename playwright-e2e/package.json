@@ -1,7 +1,7 @@
 {
   "name": "playwright-e2e",
   "version": "1.0.0",
-  "description": "Playwright TypeScript e2e framework — Page Objects, fixtures, storageState, API, and a11y coverage",
+  "description": "Playwright TypeScript e2e framework — POM, storageState, API, a11y, visual, Allure, Cucumber BDD",
   "private": true,
   "scripts": {
     "test": "playwright test",
@@ -13,7 +13,16 @@
     "test:a11y": "playwright test --grep @a11y --project=chromium",
     "test:unauthenticated": "playwright test --project=unauthenticated",
     "test:chromium": "playwright test --project=chromium --project=unauthenticated --project=api",
+    "test:mobile": "playwright test --project=mobile-chrome",
+    "test:visual": "playwright test --project=chromium --grep @visual",
+    "test:visual:update": "playwright test --project=chromium --grep @visual --update-snapshots",
+    "test:advanced": "playwright test --project=chromium --project=unauthenticated --grep '@soft|@clock|@visual'",
+    "test:cucumber": "cucumber-js",
+    "test:cucumber:smoke": "cucumber-js --tags '@smoke and @cucumber'",
     "report": "playwright show-report",
+    "allure:generate": "allure generate allure-results --clean -o allure-report",
+    "allure:open": "allure open allure-report",
+    "allure:serve": "allure serve allure-results",
     "lint": "tsc --noEmit"
   },
   "keywords": [
@@ -23,17 +32,22 @@
     "automation",
     "api-testing",
     "accessibility",
-    "ui-scout",
-    "crawl"
+    "cucumber",
+    "bdd",
+    "allure",
+    "visual-testing"
   ],
   "author": "",
   "license": "MIT",
   "devDependencies": {
     "@axe-core/playwright": "^4.10.2",
+    "@cucumber/cucumber": "^13.2.0",
     "@playwright/test": "^1.54.1",
     "@types/node": "^22.16.5",
     "@types/pixelmatch": "^5.2.6",
     "@types/pngjs": "^6.0.5",
+    "allure-commandline": "^2.43.0",
+    "allure-playwright": "^3.10.2",
     "dotenv": "^16.6.1",
     "pixelmatch": "^5.3.0",
     "pngjs": "^7.0.0",

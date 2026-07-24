@@ -19,10 +19,16 @@ These are public demo systems, so occasional upstream downtime or data quirks ar
 | **API testing via `request`** | `src/api/`, `tests/api/` |
 | **Network mocking (`route.fulfill`)** | `tests/network/` |
 | **Accessibility (axe)** | `tests/a11y/` |
-| **UI Scout** | now lives in the standalone sibling project `../ui-scout` |
+| **Visual snapshots** | `tests/visual/` (`toHaveScreenshot`) |
+| **Soft assertions** | `tests/advanced/soft-assertions.spec.ts` |
+| **Clock mocking** | `tests/advanced/clock.spec.ts` |
+| **Mobile device project** | `mobile-chrome` (Pixel 5) |
+| **Allure reporting** | `allure-playwright` + `npm run allure:serve` |
+| **Cucumber BDD** | `cucumber/` + [`docs/cucumber.md`](./docs/cucumber.md) |
+| **UI Scout** | sibling project `../ui-scout` |
 | **`test.step` for readable reports** | checkout + API specs |
 | Smoke tagging (`@smoke`) | specs |
-| Multi-browser + CI artifacts | `playwright.config.ts`, GitHub Actions |
+| Multi-browser + sharded CI | `playwright.config.ts`, GitHub Actions |
 
 ## Quick start
 
@@ -37,20 +43,40 @@ npm run test:chromium  # setup + e2e + login/network + api (recommended locally)
 ### Useful scripts
 
 ```bash
-npm test                 # all projects (incl. firefox/webkit)
+npm test                 # all projects (incl. firefox/webkit/mobile)
 npm run test:e2e         # authenticated Chromium e2e (runs setup first)
 npm run test:api         # Restful Booker API suite
 npm run test:a11y        # axe scans
+npm run test:mobile      # Pixel 5 device emulation
+npm run test:visual      # screenshot baselines
+npm run test:visual:update  # refresh visual baselines
+npm run test:advanced    # soft asserts + clock + visual
 npm run test:unauthenticated  # login + network mocking
 npm run test:smoke       # @smoke across matching projects
 npm run test:ui          # Playwright UI mode
-npm run report           # open HTML report
+npm run test:cucumber    # Gherkin / Cucumber BDD scenarios
+npm run test:cucumber:smoke  # @smoke cucumber scenarios
+npm run report           # Playwright HTML report
+npm run allure:serve     # generate + open Allure report
 npm run lint             # TypeScript check
 ```
 
-### Standalone UI Scout
+### Cucumber BDD
 
-UI Scout now lives in the standalone sibling project at `../ui-scout`.
+Living-documentation style scenarios (login, cart tables, sort outlines) on the same Page Objects:
+
+```bash
+npm run test:cucumber
+```
+
+See [`docs/cucumber.md`](./docs/cucumber.md).
+
+### Debugging & Allure
+
+- Trace walkthrough: [`docs/debugging.md`](./docs/debugging.md)
+- Allure: `npm run test:chromium && npm run allure:serve`
+
+### Standalone UI Scout
 
 ```bash
 cd ../ui-scout
@@ -62,26 +88,29 @@ npm run scout:ui   # http://localhost:4177
 
 ```text
 playwright-e2e/
-├── playwright.config.ts      # setup / e2e / unauthenticated / api / scout projects
+├── playwright.config.ts      # setup / browsers / mobile / api projects
+├── cucumber.js
 ├── docs/
-│   └── test-strategy.md      # risk model, suite split, CI gates
+│   ├── test-strategy.md
+│   ├── cucumber.md
+│   └── debugging.md          # traces + Allure
 ├── .auth/                    # generated storageState (gitignored)
-├── scout-report/             # generated UI Scout HTML/JSON (gitignored)
+├── cucumber/
 ├── src/
-│   ├── api/                  # API clients (BookingApi)
+│   ├── api/
 │   ├── data/
-│   ├── fixtures/             # UI + API fixtures
-│   ├── pages/                # Page Object Model
-│   └── scout/                # exploratory crawler + issue checks
+│   ├── fixtures/
+│   └── pages/
 └── tests/
-    ├── auth/                 # setup + login negatives
+    ├── auth/
     ├── a11y/
+    ├── advanced/             # soft asserts + clock
     ├── api/
     ├── cart/
     ├── checkout/
     ├── inventory/
     ├── network/
-    └── scout/
+    └── visual/               # toHaveScreenshot baselines
 ```
 
 ## Auth model (interview talking point)
@@ -89,28 +118,32 @@ playwright-e2e/
 ```text
 setup project  →  login once  →  .auth/user.json
         ↓
-chromium/firefox/webkit load storageState (no UI login per test)
+chromium/firefox/webkit/mobile-chrome load storageState
         ↓
-unauthenticated project runs login/mocking without stored session
+unauthenticated project runs login/mocking/clock without stored session
 ```
-
-This is the same pattern used in large suites: faster tests, less flaky login, clearer separation of auth vs feature risk.
 
 ## Design notes
 
 1. **storageState over per-test login** — cart/checkout start on inventory already authenticated.
-2. **API client wrapper** — keeps Playwright `request` calls typed and reusable; easy to swap base URLs via env.
-3. **Mocking for determinism** — `route.fulfill` proves you can isolate UI from backend failures.
-4. **axe in CI mindset** — attach full JSON; fail on `critical` impact (serious/moderate can be phased in).
-5. **Cleanup discipline** — API data created during tests is deleted in `finally`, so failures do not leave stale state.
-6. **Standalone UI Scout** — crawl with axe + visual diffs + local dashboard in the sibling project.
-7. **Next upgrades** — sharding, Allure, component testing, trace viewer walkthrough in README.
+2. **API client wrapper** — typed Playwright `request` calls; easy to swap base URLs via env.
+3. **Mocking for determinism** — `route.fulfill` isolates UI from backend failures.
+4. **axe in CI mindset** — attach full JSON; fail on `critical` impact.
+5. **Cleanup discipline** — API data deleted in `finally`.
+6. **Visual + soft + clock** — advanced Playwright APIs without bloating the smoke path.
+7. **Allure + traces** — suite narrative for stakeholders; interactive debug for engineers.
+8. **Sharded CI** — Chromium portfolio split across shards; mobile + cucumber as parallel jobs.
 
 ## Test Strategy
 
-See [`docs/test-strategy.md`](./docs/test-strategy.md) for the risk model, suite split, and CI quality gates this framework is designed around.
+See [`docs/test-strategy.md`](./docs/test-strategy.md).
 
 ## CI
 
-Workflow: `../.github/workflows/playwright.yml`  
-Typechecks, then runs Chromium e2e + unauthenticated + API; uploads the HTML report.
+Workflow: `../.github/workflows/playwright.yml`
+
+- `lint` → typecheck
+- `chromium` → sharded portfolio (`chromium` + `unauthenticated` + `api`)
+- `mobile` → Pixel 5 project
+- `cucumber` → smoke BDD
+- `allure` → merge shard results and publish Allure HTML
