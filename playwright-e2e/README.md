@@ -80,12 +80,20 @@ See [`docs/cucumber.md`](./docs/cucumber.md).
 - Trace walkthrough: [`docs/debugging.md`](./docs/debugging.md)
 - Allure: `npm run test:chromium && npm run allure:serve`
 
-### Standalone UI Scout
+### Dedicated API framework and UI Scout
+
+This Playwright suite keeps the browser side in view, while the dedicated API project handles deeper REST contracts and auth matrix work:
+
+```bash
+cd ../api-framework
+npm install && npm test
+```
+
+The standalone UI crawl companion remains here as a sibling exploration project:
 
 ```bash
 cd ../ui-scout
-npm install
-npm run scout:ui   # http://localhost:4177
+npm install && npm run scout:ui
 ```
 
 ## Project layout

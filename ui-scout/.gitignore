@@ -1,0 +1,11 @@
+node_modules/
+/test-results/
+/playwright-report/
+/blob-report/
+/playwright/.cache/
+/scout-report/
+/scout-baselines/
+.auth/
+.env
+*.log
+.DS_Store

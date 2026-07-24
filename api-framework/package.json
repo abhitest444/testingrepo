@@ -1,0 +1,30 @@
+{
+  "name": "api-framework",
+  "version": "1.0.0",
+  "private": true,
+  "description": "Dedicated REST API test framework — Zod contracts, auth matrix, negatives, cleanup",
+  "scripts": {
+    "lint": "tsc --noEmit",
+    "test": "vitest run",
+    "test:watch": "vitest",
+    "test:smoke": "vitest run -t @smoke",
+    "test:contract": "vitest run tests/contract",
+    "test:negative": "vitest run tests/negative"
+  },
+  "keywords": [
+    "api-testing",
+    "contract-testing",
+    "zod",
+    "vitest",
+    "restful-booker",
+    "qa"
+  ],
+  "license": "MIT",
+  "devDependencies": {
+    "@types/node": "^26.1.1",
+    "dotenv": "^17.4.2",
+    "typescript": "^7.0.2",
+    "vitest": "^4.1.10",
+    "zod": "^4.4.3"
+  }
+}

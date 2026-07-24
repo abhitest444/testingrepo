@@ -1,4 +1,5 @@
-import type { APIRequestContext, APIResponse } from '@playwright/test';
+import type { APIRequestContext } from '@playwright/test';
+import { BaseApiClient } from './BaseApiClient';
 
 export type BookingDates = {
   checkin: string;
@@ -19,35 +20,38 @@ export type CreatedBooking = {
   booking: BookingPayload;
 };
 
+export type TokenResponse = {
+  token: string;
+};
+
 /**
- * Thin API client over Playwright's request context.
- * Prefer this over raw fetch in tests — headers, baseURL, and reporting stay consistent.
+ * Typed API client for the Restful Booker service.
+ * Keeps the tests readable while still using Playwright's request context under the hood.
  */
-export class BookingApi {
-  constructor(private readonly request: APIRequestContext) {}
+export class BookingApi extends BaseApiClient {
+  constructor(request: APIRequestContext) {
+    super(request);
+  }
 
   async createToken(
     username = process.env.BOOKER_USERNAME ?? 'admin',
     password = process.env.BOOKER_PASSWORD ?? 'password123',
   ): Promise<string> {
-    const response = await this.request.post('/auth', {
+    const body = await this.requestJson<TokenResponse>('post', '/auth', {
       data: { username, password },
     });
-    await this.expectOk(response, 'createToken');
-    const body = (await response.json()) as { token: string };
+
     return body.token;
   }
 
   async createBooking(payload: BookingPayload): Promise<CreatedBooking> {
-    const response = await this.request.post('/booking', { data: payload });
-    await this.expectOk(response, 'createBooking');
-    return (await response.json()) as CreatedBooking;
+    return this.requestJson<CreatedBooking>('post', '/booking', {
+      data: payload,
+    });
   }
 
   async getBooking(id: number): Promise<BookingPayload> {
-    const response = await this.request.get(`/booking/${id}`);
-    await this.expectOk(response, 'getBooking');
-    return (await response.json()) as BookingPayload;
+    return this.requestJson<BookingPayload>('get', `/booking/${id}`);
   }
 
   async updateBooking(
@@ -55,26 +59,15 @@ export class BookingApi {
     token: string,
     payload: BookingPayload,
   ): Promise<BookingPayload> {
-    const response = await this.request.put(`/booking/${id}`, {
-      headers: { Cookie: `token=${token}` },
+    return this.requestJson<BookingPayload>('put', `/booking/${id}`, {
+      headers: this.buildAuthHeaders(token),
       data: payload,
     });
-    await this.expectOk(response, 'updateBooking');
-    return (await response.json()) as BookingPayload;
   }
 
   async deleteBooking(id: number, token: string): Promise<void> {
-    const response = await this.request.delete(`/booking/${id}`, {
-      headers: { Cookie: `token=${token}` },
-    });
-    if (response.status() !== 201) {
-      throw new Error(`deleteBooking failed: ${response.status()} ${await response.text()}`);
-    }
-  }
-
-  private async expectOk(response: APIResponse, action: string): Promise<void> {
-    if (!response.ok()) {
-      throw new Error(`${action} failed: ${response.status()} ${await response.text()}`);
-    }
+    await this.requestText('delete', `/booking/${id}`, {
+      headers: this.buildAuthHeaders(token),
+    }, 201);
   }
 }

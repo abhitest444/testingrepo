@@ -1,0 +1,37 @@
+name: API Framework
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'api-framework/**'
+      - '.github/workflows/api-framework.yml'
+  pull_request:
+    paths:
+      - 'api-framework/**'
+      - '.github/workflows/api-framework.yml'
+
+jobs:
+  test:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: api-framework
+    steps:
+      - uses: actions/checkout@v4
+
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 22
+          cache: npm
+          cache-dependency-path: api-framework/package-lock.json
+
+      - name: Install dependencies
+        run: npm ci
+
+      - name: Typecheck
+        run: npm run lint
+
+      - name: Run API suite
+        run: npm test

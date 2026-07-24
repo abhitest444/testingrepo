@@ -8,7 +8,7 @@
 | --- | --- | --- |
 | [playwright-e2e](./playwright-e2e) | Playwright + TS: POM, storageState, API, mocking, a11y, visual, Allure, Cucumber, sharded CI | Active |
 | [ui-scout](./ui-scout) | Standalone UI Scout crawl, axe, visual diffs, dashboard | Active |
-| Dedicated API framework | Contract/schema REST automation beyond Playwright request | Planned |
+| [api-framework](./api-framework) | Dedicated REST API tests: Zod contracts, auth matrix, negatives, cleanup | Active |
 | Performance | k6 load & thresholds | Planned |
 | CI/CD deep dive | Pipelines, sharding, quality gates | Active (see Playwright workflow; nightly matrix still planned) |
 
@@ -42,6 +42,13 @@ This repo is intentionally built to show signal, not noise:
 - **Depth on demand** — mobile, accessibility, visual snapshots, clock/soft-assert demos, and Cucumber BDD in the same codebase
 - **Reviewable outputs** — Playwright HTML reports, traces on failure, and Allure for stakeholder-friendly narrative
 
+## Also try
+
+```bash
+# Dedicated API framework (Zod contracts / auth matrix)
+cd api-framework && npm install && npm test
+```
+
 ## Skills roadmap
 
 - [x] Playwright foundation (POM, fixtures, multi-browser, CI)
@@ -50,7 +57,7 @@ This repo is intentionally built to show signal, not noise:
 - [x] Cucumber BDD (features, outlines, data tables, World, hooks)
 - [x] UI Scout (crawl, axe, visual diffs, local dashboard)
 - [x] CI patterns (lint gate, sharded Chromium, mobile + cucumber jobs, Allure artifact)
-- [ ] Dedicated API project (beyond Playwright request)
+- [x] Dedicated API project (Vitest + Zod contracts, auth matrix, negatives, janitor cleanup)
 - [ ] Performance testing
 - [ ] Deeper CI (nightly Firefox/WebKit matrix, Scout schedule, Allure history)
 
