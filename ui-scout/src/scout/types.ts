@@ -10,7 +10,11 @@ export type IssueCategory =
   | 'interactive'
   | 'page-error'
   | 'a11y'
-  | 'visual';
+  | 'visual'
+  | 'content'
+  | 'keyboard'
+  | 'tooltip'
+  | 'form-validation';
 
 export type ScoutIssue = {
   category: IssueCategory;
@@ -53,9 +57,19 @@ export type ScoutRunOptions = {
   /** Max SPA click probes per page for hash links (default 12). */
   maxClickProbes: number;
   runA11y: boolean;
+  runContent: boolean;
+  runInteraction: boolean;
+  maxTabStops: number;
+  maxFormProbes: number;
+  maxTooltipProbes: number;
   runVisual: boolean;
+  /** Probe external http(s) links (social hosts are skipped unless SCOUT_PROBE_SOCIAL=true). */
+  probeExternalLinks: boolean;
+  probeSocialLinks: boolean;
+  dedupeIssues: boolean;
   baselineDir: string;
   diffDir: string;
+  visualMaskSelectors: string[];
   visualThreshold: number;
   updateBaselines: boolean;
 };

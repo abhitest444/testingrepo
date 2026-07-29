@@ -6,18 +6,36 @@ Exploratory crawl helper for testers. It walks the app like a curious user, then
 
 | Check | Examples |
 | --- | --- |
-| Broken links | Same-origin + external `a[href]` probes (external bot-blocks stay moderate) |
+| Broken links | Same-origin probes by default; external probes opt-in (`SCOUT_PROBE_EXTERNAL`) |
 | Dead ends | Navigation failures, hard HTTP errors, empty navigation graphs |
 | SPA soft-404 | Host 404 while the app still renders (common on GitHub Pages) — recorded as minor |
 | Console / page errors | `console.error`, uncaught exceptions |
 | Network failures | Failed document, CSS, JS, image, or font responses |
-| Broken images | `<img>` with `naturalWidth === 0` |
+| Image quality | Broken load, stretched/squashed aspect ratio, upscaled pixelation, missing alt on large images; skips lazy/off-screen thumbnails |
 | Layout | Horizontal overflow past the viewport |
 | Interactive targets | Tiny clickables, buttons with no name |
+| Interaction quality | Sampled keyboard tab flow, icon-label/tooltip hints, common email/phone/required validation |
+| Content / copy | Title issues, typos, placeholders, double spaces, heading hierarchy |
 | Accessibility | axe-core WCAG 2 A/AA on every crawled page |
-| Visual diffs | Full-page screenshots vs `scout-baselines/` (pixelmatch) |
+| Visual diffs | Viewport screenshots vs `scout-baselines/` (pixelmatch), with optional masked dynamic selectors |
 
 Discovery is SPA-aware: seed paths + click probes for `href="#"` controls (Sauce Demo style), not only classic `<a href="/path">` crawls.
+
+## Noise reduction (defaults)
+
+- **External link probes off** — social/CDN false positives avoided (`SCOUT_PROBE_EXTERNAL=false`).
+- **Social hosts skipped** when external probes are on — unless `SCOUT_PROBE_SOCIAL=true`.
+- **Cross-page dedupe** — footer/header repeats collapse to one row (`SCOUT_DEDUPE=true`).
+- **Visual baselines** — first-run baseline creation is not reported as an issue.
+
+## Showcase demo (recommended for interviews)
+
+```bash
+npm run scout:demo
+# open scout-report/scout-report.html
+```
+
+Crawls [the-internet.herokuapp.com](https://the-internet.herokuapp.com) with seed paths for broken images, JS errors, HTTP status codes, and forms so the report shows many issue types in one pass. See [README.md](../README.md#how-to-present-ui-scout-60s) for the portfolio summary and [ui-scout README](./README.md) for the full talk track.
 
 ## Local dashboard (recommended)
 
@@ -62,6 +80,15 @@ npm run scout
 | `SCOUT_USER_SELECTOR` / `SCOUT_PASSWORD_SELECTOR` | Form field selectors |
 | `SCOUT_SUBMIT_SELECTOR` | Login button (default `button[type=submit]`) |
 | `SCOUT_SUCCESS_URL` / `SCOUT_SUCCESS_SELECTOR` | Optional post-login wait |
+| `SCOUT_CONTENT` | Copy / grammar heuristics (default `true`) |
+| `SCOUT_INTERACTION` | Keyboard/tab, tooltip, form validation heuristics (default `true`) |
+| `SCOUT_MAX_TAB_STOPS` | Tabbing sample length per page (default `20`) |
+| `SCOUT_MAX_FORM_PROBES` | Max form fields to probe per page (default `4`) |
+| `SCOUT_MAX_TOOLTIP_PROBES` | Max icon/unnamed controls to inspect per page (default `10`) |
+| `SCOUT_VISUAL_MASK` | Comma-separated selectors to mask in screenshots (dynamic carousels, timestamps) |
+| `SCOUT_PROBE_EXTERNAL` | Probe external links (default `false`) |
+| `SCOUT_PROBE_SOCIAL` | Include Instagram/X/etc. when probing external (default `false`) |
+| `SCOUT_DEDUPE` | Collapse repeat findings across pages (default `true`) |
 
 ## CLI
 
@@ -114,11 +141,12 @@ Logout / reset links are excluded by default (`SCOUT_EXCLUDE=logout,reset,sign-o
 - **Critical** issues always fail the Playwright test (except axe — see below).
 - **Serious** non-a11y issues fail the test.
 - **Axe findings** are always recorded; they fail the run only when `SCOUT_A11Y_STRICT=true` (demo sites like Sauce Demo have known a11y debt).
-- **Moderate / minor** stay in the report / dashboard only (overflow, soft-404s, baseline creation, blocked social probes).
+- **Moderate / minor** stay in the report / dashboard only (overflow, soft-404s, blocked social probes).
 
 ## Interview talking points
 
 1. **Crawl ≠ scripted e2e** — discovers pages you forgot to cover with POM tests.
 2. **Viewport matrix** — same crawl at 390 / 768 / 1440 catches responsive layout bugs.
-3. **Axe + visual in one pass** — accessibility and pixel regressions without a separate suite wiring.
-4. **Tester-facing UI** — non-automation folks can kick off scans and triage findings without CLI.
+3. **Content + image heuristics** — catches copy debt and stretched assets without manual pass.
+4. **Axe + visual in one pass** — accessibility and pixel regressions without a separate suite wiring.
+5. **Tester-facing UI** — non-automation folks can kick off scans and triage findings without CLI.

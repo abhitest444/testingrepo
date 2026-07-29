@@ -9,6 +9,10 @@ import {
   pageLooksRendered,
   scanDomForUiIssues,
 } from './checks';
+import { scanPageContent } from './content';
+import { scanPageImages } from './images';
+import { scanInteractionIssues } from './interaction';
+import { dedupeIssues, isSkippableExternalUrl } from './noise';
 import type { ScoutIssue, ScoutRunOptions, ScoutRunResult, ViewportProfile, VisitedPage } from './types';
 
 function normalizeUrl(url: string): string {
@@ -24,20 +28,20 @@ function isExcluded(url: string, patterns: RegExp[]): boolean {
   return patterns.some((re) => re.test(url));
 }
 
-function buildSummary(pages: VisitedPage[]): ScoutRunResult['summary'] {
+function buildSummaryFromIssues(
+  pageCount: number,
+  issues: ScoutIssue[],
+): ScoutRunResult['summary'] {
   const summary: ScoutRunResult['summary'] = {
-    pages: pages.length,
-    issues: 0,
+    pages: pageCount,
+    issues: issues.length,
     bySeverity: { critical: 0, serious: 0, moderate: 0, minor: 0 },
     byCategory: {},
   };
 
-  for (const page of pages) {
-    for (const issue of page.issues) {
-      summary.issues += 1;
-      summary.bySeverity[issue.severity] += 1;
-      summary.byCategory[issue.category] = (summary.byCategory[issue.category] ?? 0) + 1;
-    }
+  for (const issue of issues) {
+    summary.bySeverity[issue.severity] += 1;
+    summary.byCategory[issue.category] = (summary.byCategory[issue.category] ?? 0) + 1;
   }
   return summary;
 }
@@ -181,6 +185,20 @@ export async function runScoutCrawl(
     }
 
     pageIssues.push(...(await scanDomForUiIssues(page)));
+    pageIssues.push(...(await scanPageImages(page)));
+
+    if (options.runContent && rendered) {
+      pageIssues.push(...(await scanPageContent(page)));
+    }
+    if (options.runInteraction && rendered) {
+      pageIssues.push(
+        ...(await scanInteractionIssues(page, {
+          maxTabStops: options.maxTabStops,
+          maxFormProbes: options.maxFormProbes,
+          maxTooltipProbes: options.maxTooltipProbes,
+        })),
+      );
+    }
 
     if (options.runA11y && rendered) {
       const { scanPageAccessibility } = await import('./a11y');
@@ -193,8 +211,13 @@ export async function runScoutCrawl(
 
     for (const link of urlLinks) {
       if (isExcluded(link.href, options.excludePathPatterns)) continue;
-      if (options.sameOriginOnly && !link.href.startsWith(origin)) {
-        // Still probe external links for broken status — useful for footer socials etc.
+
+      const isExternal = !link.href.startsWith(origin);
+      if (isExternal) {
+        if (!options.probeExternalLinks) continue;
+        if (!options.probeSocialLinks && isSkippableExternalUrl(link.href)) continue;
+      } else {
+        enqueue(queue, visited, link.href, options.excludePathPatterns);
       }
 
       let linkStatus = linkStatusCache.get(link.href);
@@ -203,9 +226,6 @@ export async function runScoutCrawl(
         linkStatusCache.set(link.href, linkStatus);
       }
 
-      // Same-origin HTML routes on SPA hosts often HEAD/GET as 404 while usable in-browser.
-      // Only hard-fail external broken links, or same-origin when probe fails entirely.
-      const isExternal = !link.href.startsWith(origin);
       if (linkStatus === null) {
         pageIssues.push({
           category: 'broken-link',
@@ -219,9 +239,8 @@ export async function runScoutCrawl(
       } else if (linkStatus >= 400 && isExternal) {
         pageIssues.push({
           category: 'broken-link',
-          // Social / CDN endpoints often block automated HEAD/GET — keep as review signal.
           severity: linkStatus === 404 || linkStatus === 410 ? 'serious' : 'moderate',
-          message: `Broken or blocked external link (HTTP ${linkStatus})`,
+          message: `Broken external link (HTTP ${linkStatus})`,
           url: current,
           details: `${link.text || '(no text)'} → ${link.href}`,
         });
@@ -233,10 +252,6 @@ export async function runScoutCrawl(
           url: current,
           details: `${link.text || '(no text)'} → ${link.href}`,
         });
-      }
-
-      if (link.href.startsWith(origin)) {
-        enqueue(queue, visited, link.href, options.excludePathPatterns);
       }
     }
 
@@ -275,7 +290,17 @@ export async function runScoutCrawl(
       const runName = `${browserName}_${viewport.name}`;
       const basename = screenshotBasename(runName, current, origin);
       screenshotPath = path.join(options.screenshotDir, basename);
-      await page.screenshot({ path: screenshotPath, fullPage: false });
+      const mask =
+        options.visualMaskSelectors.length > 0
+          ? options.visualMaskSelectors.map((selector) => page.locator(selector).first())
+          : [];
+      await page.screenshot({
+        path: screenshotPath,
+        fullPage: false,
+        animations: 'disabled',
+        caret: 'hide',
+        mask,
+      });
 
       if (options.runVisual) {
         const visual = compareScreenshotToBaseline(current, screenshotPath, basename, {
@@ -304,6 +329,9 @@ export async function runScoutCrawl(
   }
 
   const finishedAt = new Date().toISOString();
+  const flatIssues = pagesVisited.flatMap((p) => p.issues);
+  const issues = options.dedupeIssues ? dedupeIssues(flatIssues) : flatIssues;
+
   return {
     startedAt,
     finishedAt,
@@ -311,7 +339,7 @@ export async function runScoutCrawl(
     browserName,
     viewport,
     pagesVisited,
-    issues: pagesVisited.flatMap((p) => p.issues),
-    summary: buildSummary(pagesVisited),
+    issues,
+    summary: buildSummaryFromIssues(pagesVisited.length, issues),
   };
 }

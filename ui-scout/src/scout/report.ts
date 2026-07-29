@@ -41,6 +41,52 @@ function severityClass(severity: ScoutIssue['severity']): string {
   return `sev-${severity}`;
 }
 
+function severityWeight(sev: ScoutIssue['severity']): number {
+  if (sev === 'critical') return 100;
+  if (sev === 'serious') return 70;
+  if (sev === 'moderate') return 40;
+  return 20;
+}
+
+function categoryWeight(category: ScoutIssue['category']): number {
+  if (category === 'visual' || category === 'form-validation' || category === 'keyboard') return 20;
+  if (category === 'a11y' || category === 'broken-image') return 12;
+  if (category === 'content') return 8;
+  return 0;
+}
+
+function actionableScore(issue: ScoutIssue): number {
+  const detail = issue.details ?? '';
+  const repeatMatch = detail.match(/repeated on (\d+) page/);
+  const repeatCount = repeatMatch ? Number(repeatMatch[1]) : 1;
+  return severityWeight(issue.severity) + categoryWeight(issue.category) + Math.min(25, repeatCount * 2);
+}
+
+function renderTopActionable(run: ScoutRunResult): string {
+  const top = [...run.issues]
+    .sort((a, b) => actionableScore(b) - actionableScore(a))
+    .slice(0, 10);
+
+  if (top.length === 0) return '';
+  const rows = top
+    .map(
+      (issue) => `<tr>
+    <td><span class="badge ${severityClass(issue.severity)}">${escapeHtml(issue.severity)}</span></td>
+    <td>${escapeHtml(issue.category)}</td>
+    <td>${escapeHtml(issue.message)}</td>
+    <td>${Math.round(actionableScore(issue))}</td>
+  </tr>`,
+    )
+    .join('\n');
+
+  return `
+  <h3>Top Actionable Findings</h3>
+  <table>
+    <thead><tr><th>Severity</th><th>Category</th><th>Finding</th><th>Score</th></tr></thead>
+    <tbody>${rows}</tbody>
+  </table>`;
+}
+
 function renderIssueRow(issue: ScoutIssue): string {
   return `<tr data-severity="${escapeHtml(issue.severity)}" data-category="${escapeHtml(issue.category)}">
     <td><span class="badge ${severityClass(issue.severity)}">${escapeHtml(issue.severity)}</span></td>
@@ -105,6 +151,7 @@ function renderRun(run: ScoutRunResult, index: number, outputDir: string): strin
       <div><strong>${run.summary.bySeverity.moderate}</strong><span>moderate</span></div>
       <div><strong>${run.summary.bySeverity.minor}</strong><span>minor</span></div>
     </div>
+    ${renderTopActionable(run)}
     <h3>Issues</h3>
     <table>
       <thead>
@@ -144,10 +191,11 @@ export function writeScoutReport(
       acc.critical += run.summary.bySeverity.critical;
       acc.serious += run.summary.bySeverity.serious;
       acc.a11y += run.summary.byCategory.a11y ?? 0;
+      acc.content += run.summary.byCategory.content ?? 0;
       acc.visual += run.summary.byCategory.visual ?? 0;
       return acc;
     },
-    { pages: 0, issues: 0, critical: 0, serious: 0, a11y: 0, visual: 0 },
+    { pages: 0, issues: 0, critical: 0, serious: 0, a11y: 0, content: 0, visual: 0 },
   );
 
   fs.writeFileSync(jsonPath, JSON.stringify({ generatedAt: new Date().toISOString(), totals, results }, null, 2));
@@ -254,8 +302,8 @@ export function writeScoutReport(
   <header>
     <h1>UI Scout Report</h1>
     <p class="lede">
-      Crawl across viewports with broken-link / dead-end checks, axe accessibility,
-      visual baseline diffs, and UI heuristics.
+      Crawl across viewports with broken-link / dead-end checks, copy heuristics, image quality,
+      axe accessibility, visual baseline diffs, and UI heuristics.
     </p>
     <div class="hero-stats">
       <div><strong>${totals.pages}</strong><span>page visits</span></div>
@@ -263,6 +311,7 @@ export function writeScoutReport(
       <div><strong>${totals.critical}</strong><span>critical</span></div>
       <div><strong>${totals.serious}</strong><span>serious</span></div>
       <div><strong>${totals.a11y}</strong><span>a11y</span></div>
+      <div><strong>${totals.content}</strong><span>content</span></div>
       <div><strong>${totals.visual}</strong><span>visual</span></div>
     </div>
   </header>

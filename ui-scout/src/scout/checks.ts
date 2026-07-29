@@ -89,7 +89,6 @@ export function collectorsToIssues(pageUrl: string, collectors: IssueCollectors)
 }
 
 type DomFindings = {
-  brokenImages: { src: string; alt: string }[];
   overflow: boolean;
   scrollWidth: number;
   clientWidth: number;
@@ -102,13 +101,6 @@ type DomFindings = {
  */
 export async function scanDomForUiIssues(page: Page): Promise<ScoutIssue[]> {
   const findings = await page.evaluate((): DomFindings => {
-    const brokenImages = Array.from(document.images)
-      .filter((img) => img.complete && img.naturalWidth === 0)
-      .map((img) => ({
-        src: img.currentSrc || img.src,
-        alt: img.alt || '',
-      }));
-
     const docEl = document.documentElement;
     const scrollWidth = docEl.scrollWidth;
     const clientWidth = docEl.clientWidth;
@@ -150,7 +142,6 @@ export async function scanDomForUiIssues(page: Page): Promise<ScoutIssue[]> {
     }
 
     return {
-      brokenImages: brokenImages.slice(0, 20),
       overflow,
       scrollWidth,
       clientWidth,
@@ -161,17 +152,6 @@ export async function scanDomForUiIssues(page: Page): Promise<ScoutIssue[]> {
 
   const issues: ScoutIssue[] = [];
   const pageUrl = page.url();
-
-  for (const img of findings.brokenImages) {
-    issues.push({
-      category: 'broken-image',
-      severity: 'serious',
-      message: 'Broken or empty image',
-      url: pageUrl,
-      details: img.src,
-      selector: img.alt ? `img[alt="${img.alt}"]` : undefined,
-    });
-  }
 
   if (findings.overflow) {
     issues.push({

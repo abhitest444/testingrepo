@@ -21,9 +21,14 @@ export default defineConfig({
       testMatch: /scout\.auth\.setup\.ts/,
     },
     {
+      name: 'scout-unit',
+      testMatch: /scout\/heuristics\.spec\.ts/,
+    },
+    {
       name: 'scout',
       dependencies: ['setup'],
       testMatch: /scout\/.*/,
+      testIgnore: /scout\/heuristics\.spec\.ts/,
       use: {
         ...devices['Desktop Chrome'],
         storageState: authFile,
@@ -33,6 +38,7 @@ export default defineConfig({
       name: 'scout-firefox',
       dependencies: ['setup'],
       testMatch: /scout\/.*/,
+      testIgnore: /scout\/heuristics\.spec\.ts/,
       use: {
         ...devices['Desktop Firefox'],
         storageState: authFile,
@@ -42,6 +48,7 @@ export default defineConfig({
       name: 'scout-webkit',
       dependencies: ['setup'],
       testMatch: /scout\/.*/,
+      testIgnore: /scout\/heuristics\.spec\.ts/,
       use: {
         ...devices['Desktop Safari'],
         storageState: authFile,

@@ -187,7 +187,13 @@ const server = http.createServer(async (req, res) => {
         SCOUT_START_PATH: String(body.startPath || '/'),
         SCOUT_SEED_PATHS: String(body.seedPaths || body.startPath || '/'),
         SCOUT_A11Y: body.a11y === false ? 'false' : 'true',
+        SCOUT_CONTENT: body.content === false ? 'false' : 'true',
+        SCOUT_INTERACTION: body.interaction === false ? 'false' : 'true',
+        SCOUT_MAX_TAB_STOPS: String(body.maxTabStops || 20),
+        SCOUT_MAX_FORM_PROBES: String(body.maxFormProbes || 4),
+        SCOUT_MAX_TOOLTIP_PROBES: String(body.maxTooltipProbes || 10),
         SCOUT_VISUAL: body.visual === false ? 'false' : 'true',
+        SCOUT_VISUAL_MASK: String(body.visualMaskSelectors || ''),
         SCOUT_UPDATE_BASELINES: body.updateBaselines ? 'true' : 'false',
         SCOUT_SCREENSHOTS: 'true',
       };

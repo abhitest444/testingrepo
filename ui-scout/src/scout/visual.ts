@@ -45,20 +45,8 @@ export function compareScreenshotToBaseline(
 
   if (options.updateBaselines || !fs.existsSync(baselinePath)) {
     fs.copyFileSync(currentPath, baselinePath);
-    return {
-      baselinePath,
-      issues: [
-        {
-          category: 'visual',
-          severity: 'minor',
-          message: options.updateBaselines
-            ? 'Visual baseline updated'
-            : 'Visual baseline created (first run)',
-          url: pageUrl,
-          details: baselinePath,
-        },
-      ],
-    };
+    // First-run baselines are setup, not defects — keep them out of issue counts.
+    return { baselinePath, issues: [] };
   }
 
   const img1 = readPng(baselinePath);

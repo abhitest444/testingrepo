@@ -20,7 +20,10 @@ function envFlag(name: string, defaultValue: boolean): boolean {
  * BASE_URL + SCOUT_AUTH control the target site / login.
  * SCOUT_START_PATH / SCOUT_SEED_PATHS / SCOUT_MAX_PAGES / SCOUT_VIEWPORTS
  * SCOUT_EXCLUDE / SCOUT_MAX_CLICKS / SCOUT_SCREENSHOTS
- * SCOUT_A11Y / SCOUT_VISUAL / SCOUT_UPDATE_BASELINES / SCOUT_VISUAL_THRESHOLD
+ * SCOUT_A11Y / SCOUT_CONTENT / SCOUT_INTERACTION / SCOUT_VISUAL
+ * SCOUT_MAX_TAB_STOPS / SCOUT_MAX_FORM_PROBES / SCOUT_MAX_TOOLTIP_PROBES
+ * SCOUT_UPDATE_BASELINES / SCOUT_VISUAL_THRESHOLD / SCOUT_VISUAL_MASK
+ * SCOUT_PROBE_EXTERNAL / SCOUT_PROBE_SOCIAL / SCOUT_DEDUPE
  */
 export function resolveScoutOptions(outputRoot = path.join(process.cwd(), 'scout-report')): ScoutRunOptions {
   const sauceDefaults = isSauceDemoBase();
@@ -48,11 +51,23 @@ export function resolveScoutOptions(outputRoot = path.join(process.cwd(), 'scout
     screenshotDir: path.join(outputRoot, 'screenshots'),
     maxClickProbes: Number(process.env.SCOUT_MAX_CLICKS ?? 12),
     runA11y: envFlag('SCOUT_A11Y', true),
+    runContent: envFlag('SCOUT_CONTENT', true),
+    runInteraction: envFlag('SCOUT_INTERACTION', true),
+    maxTabStops: Number(process.env.SCOUT_MAX_TAB_STOPS ?? 20),
+    maxFormProbes: Number(process.env.SCOUT_MAX_FORM_PROBES ?? 4),
+    maxTooltipProbes: Number(process.env.SCOUT_MAX_TOOLTIP_PROBES ?? 10),
+    probeExternalLinks: envFlag('SCOUT_PROBE_EXTERNAL', false),
+    probeSocialLinks: envFlag('SCOUT_PROBE_SOCIAL', false),
+    dedupeIssues: envFlag('SCOUT_DEDUPE', true),
     runVisual: envFlag('SCOUT_VISUAL', true),
     baselineDir: process.env.SCOUT_BASELINE_DIR
       ? path.resolve(process.env.SCOUT_BASELINE_DIR)
       : path.join(process.cwd(), 'scout-baselines'),
     diffDir: path.join(outputRoot, 'diffs'),
+    visualMaskSelectors: (process.env.SCOUT_VISUAL_MASK ?? '')
+      .split(',')
+      .map((s) => s.trim())
+      .filter(Boolean),
     visualThreshold: Number(process.env.SCOUT_VISUAL_THRESHOLD ?? 0.01),
     updateBaselines: envFlag('SCOUT_UPDATE_BASELINES', false),
   };

@@ -10,6 +10,8 @@
     "scout:browsers": "playwright test --config=playwright.scout.config.ts",
     "scout:ui": "tsx src/scout/ui/server.ts",
     "scout:baselines": "SCOUT_UPDATE_BASELINES=true playwright test --config=playwright.scout.config.ts --project=scout",
+    "scout:demo": "BASE_URL=https://the-internet.herokuapp.com SCOUT_AUTH=none SCOUT_START_PATH=/ SCOUT_SEED_PATHS=/broken_images,/javascript_error,/status_codes/404,/status_codes/500,/forgot_password,/login,/checkboxes,/dropdown SCOUT_MAX_PAGES=15 SCOUT_VIEWPORTS=desktop SCOUT_A11Y=true SCOUT_CONTENT=true SCOUT_INTERACTION=true SCOUT_VISUAL=true SCOUT_PROBE_EXTERNAL=false playwright test --config=playwright.scout.config.ts --project=scout",
+    "test:unit": "playwright test --config=playwright.scout.config.ts --project=scout-unit",
     "lint": "tsc --noEmit"
   },
   "devDependencies": {
