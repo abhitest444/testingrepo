@@ -1,0 +1,18 @@
+{
+  "name": "performance",
+  "version": "1.0.0",
+  "private": true,
+  "description": "k6 performance tests — smoke, load, stress, and booking lifecycle",
+  "scripts": {
+    "smoke": "k6 run scenarios/smoke.js",
+    "load": "k6 run scenarios/load.js",
+    "stress": "k6 run scenarios/stress.js",
+    "booking": "k6 run scenarios/booking-lifecycle.js",
+    "demo": "k6 run scenarios/smoke.js && k6 run scenarios/load.js",
+    "smoke:docker": "docker run --rm -i -v \"$PWD\":/work -w /work grafana/k6:0.54.0 run scenarios/smoke.js",
+    "load:docker": "docker run --rm -i -v \"$PWD\":/work -w /work grafana/k6:0.54.0 run scenarios/load.js",
+    "stress:docker": "docker run --rm -i -v \"$PWD\":/work -w /work grafana/k6:0.54.0 run scenarios/stress.js",
+    "booking:docker": "docker run --rm -i -v \"$PWD\":/work -w /work grafana/k6:0.54.0 run scenarios/booking-lifecycle.js",
+    "demo:docker": "npm run smoke:docker && npm run load:docker"
+  }
+}

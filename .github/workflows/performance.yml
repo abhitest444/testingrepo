@@ -1,0 +1,32 @@
+name: Performance (k6)
+
+on:
+  push:
+    branches: [main]
+    paths:
+      - 'performance/**'
+      - '.github/workflows/performance.yml'
+  pull_request:
+    paths:
+      - 'performance/**'
+      - '.github/workflows/performance.yml'
+
+jobs:
+  k6-smoke:
+    timeout-minutes: 15
+    runs-on: ubuntu-latest
+    defaults:
+      run:
+        working-directory: performance
+    steps:
+      - uses: actions/checkout@v4
+
+      - name: Setup k6
+        uses: grafana/setup-k6-action@v1
+
+      - name: Smoke
+        run: k6 run scenarios/smoke.js
+
+      - name: Load (short portfolio gate)
+        run: k6 run scenarios/load.js
+        # Public demo API — keep default stages; do not raise VUs in CI.

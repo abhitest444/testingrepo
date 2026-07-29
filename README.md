@@ -9,7 +9,7 @@
 | [playwright-e2e](./playwright-e2e) | Playwright + TS: POM, storageState, API, mocking, a11y, visual, Allure, Cucumber, sharded CI | Active |
 | [ui-scout](./ui-scout) | Standalone UI Scout: crawl, axe, content, images, interaction, visual diffs, dashboard | Active |
 | [api-framework](./api-framework) | Dedicated REST API tests: Zod contracts, auth matrix, negatives, cleanup | Active |
-| Performance | k6 load & thresholds | Planned |
+| [performance](./performance) | k6: smoke / load / stress / booking lifecycle + CI thresholds | Active |
 | CI/CD deep dive | Pipelines, sharding, quality gates | Active (see Playwright workflow; nightly matrix still planned) |
 
 ## Start here
@@ -52,6 +52,10 @@ cd api-framework && npm install && npm test
 cd ui-scout && npm install && npx playwright install chromium
 npm run scout:demo
 # open scout-report/scout-report.html — start with "Top Actionable Findings"
+
+# Performance (k6) — smoke + load against QuickPizza
+cd performance
+npm run demo          # needs local k6, or: npm run demo:docker
 ```
 
 ### How to present UI Scout (60s)
@@ -72,7 +76,7 @@ Full demo script: [ui-scout/README.md](./ui-scout/README.md)
 - [x] UI Scout (crawl, axe, visual diffs, local dashboard)
 - [x] CI patterns (lint gate, sharded Chromium, mobile + cucumber jobs, Allure artifact)
 - [x] Dedicated API project (Vitest + Zod contracts, auth matrix, negatives, janitor cleanup)
-- [ ] Performance testing
+- [x] Performance testing (k6 smoke / load / stress / booking lifecycle + CI gates)
 - [ ] Deeper CI (nightly Firefox/WebKit matrix, Scout schedule, Allure history)
 
 ---
