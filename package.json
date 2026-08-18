@@ -1,0 +1,20 @@
+{
+  "name": "qa-portfolio",
+  "version": "1.0.0",
+  "description": "QA Portfolio — Software Testing Showcase",
+  "private": true,
+  "scripts": {
+    "demo": "bash scripts/demo.sh",
+    "demo:quick": "bash scripts/demo.sh --quick",
+    "lint": "bash scripts/lint-all.sh"
+  },
+  "keywords": [
+    "qa",
+    "portfolio",
+    "testing",
+    "playwright",
+    "k6",
+    "vitest"
+  ],
+  "license": "MIT"
+}
