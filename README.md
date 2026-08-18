@@ -37,8 +37,11 @@ qa-portfolio/
 │   └── src/pages/          (Page Objects shared across all tests)
 │
 ├── api-framework/      ← Dedicated REST API: Zod contracts, auth matrix, negatives
-│   ├── src/                (typed HttpClient, schemas, clients, janitor)
-│   └── tests/              (contract, lifecycle, negative)
+│   ├── src/                (typed HttpClient, schemas, clients, janitor, flakiness tracker)
+│   └── tests/              (contract, lifecycle, negative, security, fault injection, Pact)
+│
+├── mock-api/           ← Deterministic mock server (fault injection, offline testing)
+│   └── src/                (Express server, in-memory store, /slow, /flaky endpoints)
 │
 ├── ui-scout/           ← Exploratory crawler: broken images, JS errors, a11y, visual diffs
 │   ├── src/                (scrape engines, analyzers, report writer)
@@ -196,6 +199,9 @@ Full demo script: [ui-scout/README.md](./ui-scout/README.md)
 - [x] Security baseline (HTTP headers, auth quirks, input sanitization, rate limiting)
 - [x] Data-driven parameterized tests (auth matrix, validation edge cases, sort options)
 - [x] Contract testing (Pact consumer-driven: consumer contracts + provider verification)
+- [x] Mock API server (deterministic, offline testing with fault injection)
+- [x] Flakiness tracking (test outcome history, quarantine rules)
+- [x] Fault injection tests (timeout, error handling, concurrent resilience)
 - [ ] Deeper CI (nightly Firefox/WebKit matrix, Scout schedule, Allure history)
 
 ## What this taught me
@@ -211,6 +217,8 @@ Full demo script: [ui-scout/README.md](./ui-scout/README.md)
 | Mutation testing | Coverage lies — Stryker found 6 test gaps that 100% line coverage missed |
 | Contract testing | Consumer-driven contracts prove API compatibility before deploy |
 | Security posture | Checking headers and auth quirks catches regressions early |
+| Mock APIs | Deterministic tests run 10x faster and work offline |
+| Fault injection | Resilience tests prove graceful degradation under failure |
 
 ## Troubleshooting
 

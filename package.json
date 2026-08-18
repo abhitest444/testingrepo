@@ -6,7 +6,13 @@
   "scripts": {
     "demo": "bash scripts/demo.sh",
     "demo:quick": "bash scripts/demo.sh --quick",
-    "lint": "bash scripts/lint-all.sh"
+    "demo:local": "bash scripts/demo.sh --local",
+    "lint": "bash scripts/lint-all.sh",
+    "mock": "node mock-api/src/server.js",
+    "mock:docker": "docker compose up mock-api",
+    "test:docker": "docker compose run --rm test-api",
+    "up": "docker compose up -d",
+    "down": "docker compose down"
   },
   "keywords": [
     "qa",

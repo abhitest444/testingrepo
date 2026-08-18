@@ -7,5 +7,10 @@ coverage/
 .stryker-tmp/
 reports/
 
+# Flakiness tracking data (regenerates each run)
+tests/test-results.jsonl
+tests/flakiness-report.json
+tests/quarantine.json
+
 # Pact (generated pact files are committed for provider verification)
 # pacts/  — tracked intentionally

@@ -1,0 +1,64 @@
+# QA Portfolio — Docker Compose Local Stack
+#
+# Spin up the full test environment with one command:
+#   docker compose up              # start mock API
+#   docker compose run tests       # run tests against mock API
+#   docker compose up --build      # rebuild if needed
+#
+# What this gives you:
+#   - Deterministic mock API (no internet required)
+#   - Fault injection via env vars
+#   - Isolated test environment
+#   - Fast feedback loop
+
+services:
+  # ── Mock API Server ──────────────────────────────────────
+  mock-api:
+    build: ./mock-api
+    ports:
+      - "3007:3007"
+    environment:
+      - PORT=3007
+      - FAULT_DELAY=${FAULT_DELAY:-0}
+      - FAULT_ERROR_RATE=${FAULT_ERROR_RATE:-0}
+      - FAULT_RATE_LIMIT=${FAULT_RATE_LIMIT:-0}
+    healthcheck:
+      test: ["CMD", "wget", "-qO-", "http://localhost:3007/ping"]
+      interval: 5s
+      timeout: 3s
+      retries: 3
+    restart: unless-stopped
+
+  # ── API Framework Tests ─────────────────────────────────
+  test-api:
+    build:
+      context: ./api-framework
+      dockerfile: Dockerfile
+    depends_on:
+      mock-api:
+        condition: service_healthy
+    environment:
+      - API_BASE_URL=http://mock-api:3007
+      - BOOKER_USERNAME=admin
+      - BOOKER_PASSWORD=password123
+    volumes:
+      - ./api-framework/reports:/app/reports
+    profiles: ["tests"]
+
+  # ── Playwright E2E Tests ────────────────────────────────
+  test-e2e:
+    build:
+      context: ./playwright-e2e
+      dockerfile: Dockerfile
+    depends_on:
+      mock-api:
+        condition: service_healthy
+    environment:
+      - BASE_URL=https://www.saucedemo.com
+      - API_BASE_URL=http://mock-api:3007
+    volumes:
+      - ./playwright-e2e/playwright-report:/app/playwright-report
+      - ./playwright-e2e/allure-results:/app/allure-results
+      - ./playwright-e2e/test-results:/app/test-results
+    shm_size: '2gb'  # Chromium needs shared memory
+    profiles: ["tests"]

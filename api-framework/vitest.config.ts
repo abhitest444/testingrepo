@@ -1,5 +1,6 @@
 import { defineConfig } from 'vitest/config';
 import dotenv from 'dotenv';
+import { FlakinessReporter } from './src/utils/flakiness-reporter';
 
 dotenv.config();
 
@@ -11,6 +12,6 @@ export default defineConfig({
     hookTimeout: 30_000,
     sequence: { concurrent: false },
     fileParallelism: false,
-    reporters: ['default'],
+    reporters: ['default', new FlakinessReporter()],
   },
 });

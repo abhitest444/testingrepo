@@ -42,6 +42,9 @@ Same public API, deeper API-testing craft.
 - **Security baseline** — HTTP headers, auth quirks, input sanitization, rate limiting
 - **Data-driven tests** — parameterized auth matrix, validation edge cases, status codes
 - **Pact contracts** — consumer-driven contracts (consumer + provider verification)
+- **Fault injection** — timeout handling, error responses, concurrent resilience
+- **Flakiness tracking** — test outcome history, quarantine rules, auto-detection
+- **Mock API** — deterministic offline testing (run against `../mock-api`)
 
 ## Layout
 
@@ -58,7 +61,7 @@ api-framework/
     ├── contract/               # schema assertions + mutation-killing tests + Pact
     │   └── pact/               # consumer + provider contract tests
     ├── lifecycle/              # CRUD @smoke
-    └── negative/               # status + authz + parameterized + security
+    └── negative/               # status + authz + parameterized + security + fault injection
 ```
 
 ## Quick start
@@ -80,6 +83,12 @@ npm run test:contract   # schema/contract folder
 npm run test:negative   # negatives + authz
 npm run test:mutation   # Stryker mutation testing (auto-installs TS5 for compatibility)
 npm run test:security  # security baseline (headers, auth, input sanitization)
+npm run test:fault    # fault injection (timeout, errors, concurrency)
+npm run test:all      # full suite (91 tests)
+
+# Flakiness tracking
+npm run flakiness     # analyze test history for flaky tests
+npm run mock          # start mock API server locally
 ```
 
 ### Sample output

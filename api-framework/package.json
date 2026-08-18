@@ -16,6 +16,12 @@
     "test:pact": "vitest run tests/contract/pact",
     "test:pact:consumer": "vitest run tests/contract/pact/consumer.test.ts",
     "test:pact:provider": "vitest run tests/contract/pact/provider.test.ts",
+    "test:fault": "vitest run tests/negative/fault-injection.test.ts",
+    "test:all": "vitest run",
+    "flakiness": "node src/utils/flakiness.ts analyze",
+    "flakiness:quarantine": "node src/utils/flakiness.ts quarantine",
+    "flakiness:clear": "node src/utils/flakiness.ts clear",
+    "mock": "node ../mock-api/src/server.js",
     "audit": "npm audit --omit=dev"
   },
   "keywords": [
