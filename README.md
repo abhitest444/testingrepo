@@ -192,6 +192,10 @@ Full demo script: [ui-scout/README.md](./ui-scout/README.md)
 - [x] Dedicated API project (Vitest + Zod contracts, auth matrix, negatives, janitor cleanup)
 - [x] Performance testing (k6 smoke / load / stress / booking lifecycle + CI gates)
 - [x] LICENSE, badges, prerequisites, sample outputs, architecture docs
+- [x] Mutation testing (Stryker: 97% score on api-framework, targeted test improvements)
+- [x] Security baseline (HTTP headers, auth quirks, input sanitization, rate limiting)
+- [x] Data-driven parameterized tests (auth matrix, validation edge cases, sort options)
+- [x] Contract testing (Pact consumer-driven: consumer contracts + provider verification)
 - [ ] Deeper CI (nightly Firefox/WebKit matrix, Scout schedule, Allure history)
 
 ## What this taught me
@@ -204,6 +208,9 @@ Full demo script: [ui-scout/README.md](./ui-scout/README.md)
 | Exploratory tooling | Crawlers find what scripted tests miss — broken images, JS errors, dead ends |
 | CI design | Sharding + parallel jobs (mobile, Cucumber) cut feedback time without losing coverage |
 | Reporting | Allure for stakeholders, traces for engineers — two audiences, two outputs |
+| Mutation testing | Coverage lies — Stryker found 6 test gaps that 100% line coverage missed |
+| Contract testing | Consumer-driven contracts prove API compatibility before deploy |
+| Security posture | Checking headers and auth quirks catches regressions early |
 
 ## Troubleshooting
 

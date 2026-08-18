@@ -9,7 +9,14 @@
     "test:watch": "vitest",
     "test:smoke": "vitest run -t @smoke",
     "test:contract": "vitest run tests/contract",
-    "test:negative": "vitest run tests/negative"
+    "test:negative": "vitest run tests/negative",
+    "test:mutation": "npm install --no-save typescript@5.8.3 && stryker run && npm install --no-save typescript@^7.0.2",
+    "test:mutation:report": "npm install --no-save typescript@5.8.3 && stryker run --reporters html,json && npm install --no-save typescript@^7.0.2",
+    "test:security": "vitest run tests/negative/security.test.ts",
+    "test:pact": "vitest run tests/contract/pact",
+    "test:pact:consumer": "vitest run tests/contract/pact/consumer.test.ts",
+    "test:pact:provider": "vitest run tests/contract/pact/provider.test.ts",
+    "audit": "npm audit --omit=dev"
   },
   "keywords": [
     "api-testing",
@@ -21,6 +28,9 @@
   ],
   "license": "MIT",
   "devDependencies": {
+    "@pact-foundation/pact": "^17.1.2",
+    "@stryker-mutator/core": "^10.0.0",
+    "@stryker-mutator/vitest-runner": "^10.0.0",
     "@types/node": "^26.1.1",
     "dotenv": "^17.4.2",
     "typescript": "^7.0.2",

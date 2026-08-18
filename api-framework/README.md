@@ -2,6 +2,8 @@
 
 ![Vitest](https://img.shields.io/badge/Vitest-4.x-729B1B)
 ![Zod](https://img.shields.io/badge/Zod-4.x-3E67DB)
+![Stryker](https://img.shields.io/badge/Mutation-97%25-brightgreen)
+![Pact](https://img.shields.io/badge/Contract-Pact-ff6b35)
 ![TypeScript](https://img.shields.io/badge/TypeScript-7.0-blue)
 
 Dedicated REST API test framework — **not** Playwright `request`.
@@ -36,6 +38,10 @@ Same public API, deeper API-testing craft.
 - **Negative statuses** — 404, invalid body, forbidden mutations
 - **BookingJanitor** — tracks created IDs and deletes them in `afterEach`
 - Factory data with unique last names for shared-env safety
+- **Mutation testing (Stryker)** — 97% mutation score; tests catch 32/33 mutants
+- **Security baseline** — HTTP headers, auth quirks, input sanitization, rate limiting
+- **Data-driven tests** — parameterized auth matrix, validation edge cases, status codes
+- **Pact contracts** — consumer-driven contracts (consumer + provider verification)
 
 ## Layout
 
@@ -49,9 +55,10 @@ api-framework/
 │   ├── data/factories.ts
 │   └── utils/janitor.ts
 └── tests/
-    ├── contract/               # schema assertions
+    ├── contract/               # schema assertions + mutation-killing tests + Pact
+    │   └── pact/               # consumer + provider contract tests
     ├── lifecycle/              # CRUD @smoke
-    └── negative/               # status + authz
+    └── negative/               # status + authz + parameterized + security
 ```
 
 ## Quick start
@@ -71,6 +78,8 @@ npm test                # full suite
 npm run test:smoke      # titles containing @smoke
 npm run test:contract   # schema/contract folder
 npm run test:negative   # negatives + authz
+npm run test:mutation   # Stryker mutation testing (auto-installs TS5 for compatibility)
+npm run test:security  # security baseline (headers, auth, input sanitization)
 ```
 
 ### Sample output
@@ -124,6 +133,7 @@ npm run test:negative   # negatives + authz
 2. **Auth is a matrix, not a happy path** — missing vs invalid token are different risks.
 3. **Cleanup is mandatory** on shared environments — janitor pattern beats hoping `finally` always ran.
 4. **Know your practice API** — assert real quirks instead of pretending every API is textbook HTTP.
+5. **Mutation testing proves test quality** — 97% mutation score means tests catch nearly every code change; the 1 surviving mutant (sequence counter direction) is a known limitation.
 
 ## Troubleshooting
 

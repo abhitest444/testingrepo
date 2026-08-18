@@ -1,0 +1,460 @@
+{
+  "consumer": {
+    "name": "PlaywrightE2E-Frontend"
+  },
+  "interactions": [
+    {
+      "description": "a request for a booking",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "a booking exists"
+        }
+      ],
+      "request": {
+        "headers": {
+          "Accept": [
+            "application/json"
+          ]
+        },
+        "method": "GET",
+        "path": "/booking/1"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "bookingdates": {
+              "checkin": "2013-02-23",
+              "checkout": "2014-10-23"
+            },
+            "depositpaid": true,
+            "firstname": "Sally",
+            "lastname": "Broccoli",
+            "totalprice": 111
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.bookingdates": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.bookingdates.checkin": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.bookingdates.checkout": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.depositpaid": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.firstname": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.lastname": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.totalprice": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request for a non-existent booking",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "no booking with ID 99999 exists"
+        }
+      ],
+      "request": {
+        "headers": {
+          "Accept": [
+            "application/json"
+          ]
+        },
+        "method": "GET",
+        "path": "/booking/99999"
+      },
+      "response": {
+        "status": 404
+      },
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request for booking 1",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "a booking with ID 1 exists"
+        }
+      ],
+      "request": {
+        "headers": {
+          "Accept": [
+            "application/json"
+          ]
+        },
+        "method": "GET",
+        "path": "/booking/1"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "additionalneeds": "late checkout",
+            "bookingdates": {
+              "checkin": "2013-02-23",
+              "checkout": "2014-10-23"
+            },
+            "depositpaid": true,
+            "firstname": "Sally",
+            "lastname": "Broccoli",
+            "totalprice": 111
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "status": 200
+      },
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request for non-existent booking",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "no booking with ID 99999 exists"
+        }
+      ],
+      "request": {
+        "headers": {
+          "Accept": [
+            "application/json"
+          ]
+        },
+        "method": "GET",
+        "path": "/booking/99999"
+      },
+      "response": {
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "status": 404
+      },
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to authenticate",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "valid credentials are provided"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "password": "password123",
+            "username": "admin"
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "method": "POST",
+        "path": "/auth"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "token": "abc123def456"
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.token": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to authenticate with bad credentials",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "invalid credentials are provided"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "password": "wrong",
+            "username": "admin"
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "method": "POST",
+        "path": "/auth"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "reason": "Bad credentials"
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.reason": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "type": "Synchronous/HTTP"
+    },
+    {
+      "description": "a request to create a new booking",
+      "pending": false,
+      "providerStates": [
+        {
+          "name": "the API is available"
+        }
+      ],
+      "request": {
+        "body": {
+          "content": {
+            "additionalneeds": "Breakfast",
+            "bookingdates": {
+              "checkin": "2018-01-01",
+              "checkout": "2019-01-01"
+            },
+            "depositpaid": true,
+            "firstname": "Jim",
+            "lastname": "Brown",
+            "totalprice": 111
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Accept": [
+            "application/json"
+          ],
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "method": "POST",
+        "path": "/booking"
+      },
+      "response": {
+        "body": {
+          "content": {
+            "booking": {
+              "bookingdates": {
+                "checkin": "2018-01-01",
+                "checkout": "2019-01-01"
+              },
+              "depositpaid": true,
+              "firstname": "Jim",
+              "lastname": "Brown",
+              "totalprice": 111
+            },
+            "bookingid": 1
+          },
+          "contentType": "application/json",
+          "encoded": false
+        },
+        "headers": {
+          "Content-Type": [
+            "application/json"
+          ]
+        },
+        "matchingRules": {
+          "body": {
+            "$.booking": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.booking.bookingdates": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.booking.bookingdates.checkin": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.booking.bookingdates.checkout": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.booking.depositpaid": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.booking.firstname": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.booking.lastname": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "type"
+                }
+              ]
+            },
+            "$.booking.totalprice": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            },
+            "$.bookingid": {
+              "combine": "AND",
+              "matchers": [
+                {
+                  "match": "integer"
+                }
+              ]
+            }
+          }
+        },
+        "status": 200
+      },
+      "type": "Synchronous/HTTP"
+    }
+  ],
+  "metadata": {
+    "pact-js": {
+      "version": "17.1.2"
+    },
+    "pactRust": {
+      "ffi": "0.5.6",
+      "models": "1.3.14"
+    },
+    "pactSpecification": {
+      "version": "4.0"
+    }
+  },
+  "provider": {
+    "name": "RestfulBooker-API"
+  }
+}
