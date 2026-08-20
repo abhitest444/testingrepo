@@ -1,0 +1,77 @@
+/**
+* Ensures that the HADrawerLarge scrimm color is consistent with all other drawers
+* that might open
+*/
+div:has(.project-editor) + .ha-underlay {
+  background-color: var(--color-action-negative-focus, rgba(0, 0, 0, 0.4));
+}
+
+@keyframes ha-overlay-fade-in {
+  0% {
+    opacity: var(--opacity-0, 0);
+  }
+  100% {
+    opacity: var(--opacity-40, 0.4);
+  }
+}
+
+/**
+* Ensures that the IDS drawer scrimm color/opacity is consistent with all other drawers
+* that might open
+*/
+div[class^='Backdrop-wrapperDark'] {
+  background-color: var(--color-overlay, rgba(0, 0, 0, 0.4)) !important;
+}
+
+.confirmation-modal-content {
+  display: flex;
+  flex-direction: column;
+  gap: 1em;
+}
+
+/**
+ * Overrides the Quickfills service dropdown width to fit the content better
+ */
+[id*='idsDropdownTypeahead'][class*='Menu-menu-list-wrapper-'][class*='DropdownTypeahead-menuWrapper-'][class*='DropdownTypeahead-quickbooks-']:has(
+    .QBDSRow
+  ) {
+  width: 475px !important;
+}
+
+/*!***/
+/* * Overrides the Quickfills service dropdown row items that have text and sub-text*/
+/* * to make the list items more readable.*/
+/* * https://developer.mozilla.org/en-US/docs/Web/CSS/:has*/
+/* *!*/
+.QBDSRowItem .column .text svg {
+  display: none;
+}
+
+.QBDSRowItem .column:first-child {
+  text-align: left; /* Align text to the left for the first column */
+  flex: 1; /* Allow it to take up available space */
+  .subText {
+    color: inherit; /* Inherit color from parent */
+  }
+}
+
+.QBDSRowItem .column:last-child {
+  margin-left: auto; /* Push the last column to the far right */
+  text-align: right; /* Align text to the right */
+  font-style: italic !important;
+}
+
+/* Handle the case where there is only one column */
+.QBDSRowItem .column:only-child {
+  text-align: left;
+  margin-left: 0; /* Remove any margin */
+  flex: 1; /* Allow it to take up available space */
+  font-style: normal !important;
+  .subText {
+    color: inherit; /* Inherit color from parent */
+  }
+}
+
+.QBDSRowItem .column .text svg {
+  display: none;
+}

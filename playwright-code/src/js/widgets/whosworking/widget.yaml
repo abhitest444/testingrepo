@@ -1,0 +1,8 @@
+id: 'time-tracking-ui/whosworking'
+classification: public
+version: 1.0.0
+interface:
+  description: |
+    Who's Working Widget - Displays workers who are currently working with map visualization
+
+main: './WhosWorkingWidget'

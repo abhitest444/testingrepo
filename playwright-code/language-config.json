@@ -1,0 +1,50 @@
+{
+  "id": "work-timecapture/time-tracking-ui",
+  "assetId": "8506191389517858617",
+  "url": "https://github.intuit.com/work-timecapture/time-tracking-ui",
+  "business_unit": "sbseg",
+  "usage_type": "product",
+  "locales": [
+    "en",
+    "en-US",
+    "en-CA",
+    "en-AU",
+    "en-GB",
+    "ar",
+    "de",
+    "es",
+    "es-419",
+    "fr",
+    "fr-CA",
+    "it",
+    "ja",
+    "ko",
+    "pt",
+    "th",
+    "zh-Hans",
+    "zh-Hant"
+  ],
+  "sources": {
+    "src/nls/*.json": {
+      "file_locale": "en-us",
+      "file_encoding": "utf-8",
+      "file_type": "json/no-editable-urls",
+      "output_template": "src/nls/:language:cond-:country/:filename:extension"
+    }
+  },
+  "pull_request_translation": {
+    "createBranch": false,
+    "pull_request_title_template": "fix(): webhook translation",
+    "commit_message_template": "fix(): webhook translation",
+    "branch_name_template": "i18n-PR/:date-:short_id"
+  },
+  "scheduled_translation": {
+    "createBranch": true,
+    "pull_request_title_template": "fix(): scheduled translation",
+    "commit_message_template": "fix(): scheduled translation",
+    "branch_name_template": "i18n-ST/:date-:short_id"
+  },
+  "localization_overrides": true,
+  "sparse": true,
+  "generate_editable_locales": false
+}

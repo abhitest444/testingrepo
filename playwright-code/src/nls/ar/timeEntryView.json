@@ -1,0 +1,23 @@
+{
+  "datagridview.columnheader.name": "الاسم",
+  "datagridview.columnheader.time": "الوقت",
+  "datagridview.columnheader.hours": "الساعات",
+  "datagridview.columnheader.customer": "العميل",
+  "datagridview.columnheader.service": "الخدمة",
+  "datagridview.columnheader.notes": "ملاحظات",
+  "datagridview.columnheader.status": "الحالة",
+  "datagridview.columnheader.action": "الإجراء",
+  "datagridview.columnheader.class": "التصنيف",
+  "datagridview.columnheader.billable": "قابل للفوترة",
+  "datagridview.columnheader.projects": "المشاريع",
+  "datagridview.columnheader.location": "الموقع",
+  "datagridview.columnheader.task": "مهمة",
+  "datagridview.actions.edit": "تحرير",
+  "datagridview.actions.delete": "حذف",
+  "add.time": "إضافة وقت",
+  "single.time.entry": "دخول لمرة واحدة",
+  "weekly.time.entry": "جدول زمني أسبوعي",
+  "tour.next": "التالي",
+  "tour.done": "تم",
+  "tour.back": "رجوع"
+}

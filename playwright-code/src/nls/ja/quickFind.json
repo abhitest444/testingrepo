@@ -1,0 +1,22 @@
+{
+    "quickfind.dropdown.loading": "読み込み中...",
+    "quickfind.dropdown.error": "問題が発生しました。もう一度やり直してください。",
+    "quickfind.dropdown.no-contacts": "利用できる連絡先がありません",
+    "quickfind.dropdown.team.member.label": "チームのメンバー",
+    "quickfind.dropdown.team.member.placeholder": "チームメンバーを選択...",
+    "quickfind.dropdown.team.member.type.employee": "従業員",
+    "quickfind.dropdown.team.member.type.vendor": "供給業者",
+    "quickfind.dropdown.team.member.type.qbo.user": "QBOユーザー",
+    "quickfill.dropdown.team.member.add.new": "新しく追加",
+    "quickfind.dropdown.customer.label": "顧客",
+    "quickfind.dropdown.customer.placeholder": "顧客またはプロジェクトを選択してください...",
+    "quickfind.dropdown.customer.add.new": "新規顧客を追加する",
+    "quickfind.dropdown.customer.customer.label": "顧客",
+    "quickfind.dropdown.customer.sub.customer.label": "下位顧客",
+    "quickfind.dropdown.customer.of.label": "の",
+    "quickfind.dropdown.customer.project.label": "プロジェクト",
+    "quickfind.dropdown.service.add.new": "新しいサービス項目を追加する",
+    "quickfind.dropdown.class.add.new": "新しい区分を追加",
+    "quickfind.dropdown.location.add.new": "新しい場所を追加する",
+    "quickfind.dropdown.load.more": "さらに読み込む"
+}

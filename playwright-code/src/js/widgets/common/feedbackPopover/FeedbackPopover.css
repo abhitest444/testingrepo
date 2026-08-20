@@ -1,0 +1,12 @@
+.popover-content-wrapper {
+  display: flex;
+  flex-direction: column;
+  gap: 16px;
+}
+
+.activity-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 256px;
+}

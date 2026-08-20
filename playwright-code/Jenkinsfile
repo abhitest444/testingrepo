@@ -1,0 +1,84 @@
+#!/usr/bin/env groovy
+
+// https://github.intuit.com/UX-Infra/jenkins-shared-libraries
+@Library(value = 'ux-infra-libraries', changelog = false) _
+
+// See all available config options here:
+// https://github.intuit.com/UX-Infra/jenkins-shared-libraries/blob/master/docs/UX_PLUGIN_PIPELINE.md
+
+def testLint() {
+  stage('testLint') {
+    script {
+      sh 'npm run lint:ci'
+    }
+  }
+}
+
+def additionalPods = """
+  - name: playwright
+    image: 'docker.intuit.com/mcr-rmt/playwright:v1.34.0-jammy'
+    tty: true
+    command: [cat]
+    resources:
+      requests:
+        cpu: 16
+        memory: 16Gi
+    """
+
+def execPlaywright() {
+  stage('🎭 Playwright tests') {
+    container('playwright') {
+      script {
+        sh 'yarn playwright install'
+      }
+      script {
+        notifyGithubStatus context: 'Tests: Playwright', status: 'PENDING', description: "Running tests with ${env.PLUGIN_RELEASE_VERSION}"
+        try {
+          stage('Run Playwright Test Suites') {
+            parallel(
+              'Playwright Tests': {
+                stage('Priority cases') {
+                  script {
+                    sh 'free -h'
+                    sh 'PLAYWRIGHT_ENV=prod yarn playwright test test/automation/playwright/flows/Priority/PriorityCases.spec.ts --reporter=html,line --output=test-results/otx --project=chromium-prod'
+                  }
+                }
+              }
+            )
+          }
+          notifyGithubStatus context: 'Tests: Playwright', status: 'SUCCESS', description: "All tests passed with ${env.PLUGIN_RELEASE_VERSION}"
+        } catch (err) {
+          notifyGithubStatus context: 'Tests: Playwright', status: 'FAILURE', description: "Some tests failed with ${env.PLUGIN_RELEASE_VERSION}"
+          error 'Playwright tests failed'
+        } finally {
+          echo 'Archiving Playwright results'
+          archiveArtifacts artifacts: 'playwright-report/**,test-results/**/*', fingerprint: false, allowEmptyArchive: true
+        }
+      }
+    }
+  }
+}
+
+node {
+  stage('Wrapped build') {
+    echo "Starting build on ${env.BRANCH_NAME}"
+    try {
+      uxPluginCLI {
+        assetId = '8506191389517858617'
+        assetAlias = 'Intuit.work.timecapture.timetrackingui'
+        tag = '4'
+        testLighthouse = false
+        testUIRemote = false
+        customStageConfig = [
+          build: [
+            after: this.&testLint
+          ]
+        ]
+        additionalPodsYaml = additionalPods
+      }
+    } catch (err) {
+      echo "Build failed on ${env.BRANCH_NAME}"
+      error 'Job failed'
+    }
+  }
+}

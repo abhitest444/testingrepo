@@ -1,0 +1,12 @@
+id: 'time-tracking-ui/quickFind'
+classification: public
+version: 1.0.0
+responsive: true
+interface:
+  description: |
+    Displays Quick Find
+
+main: './Widget'
+dependencies:
+  widgets:
+    - qbo-contacts-v2/contact-drawer@1.0.0

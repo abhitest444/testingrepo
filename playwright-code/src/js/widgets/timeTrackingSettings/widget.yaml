@@ -1,0 +1,13 @@
+id: 'time-tracking-ui/timeTrackingSettings'
+classification: public
+version: 1.0.0
+interface:
+  description: |
+    timetrackingsettings
+
+main: './widget'
+dependencies:
+  widgets:
+    - time/settings@1.0.0
+    - qbtime-setup-ui/settings/kiosk@1.0.0
+    - css-uservoice-ui/feedback@1.0.0

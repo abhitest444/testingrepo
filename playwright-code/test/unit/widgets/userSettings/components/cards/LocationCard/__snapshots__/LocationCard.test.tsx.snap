@@ -1,0 +1,18 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LocationCard Component Initialization renders and matches snapshot 1`] = `
+<div>
+  <div
+    data-testid="location-card-view"
+  >
+    <div>
+      Location View Component
+    </div>
+    <button
+      data-testid="edit-button"
+    >
+      Edit
+    </button>
+  </div>
+</div>
+`;

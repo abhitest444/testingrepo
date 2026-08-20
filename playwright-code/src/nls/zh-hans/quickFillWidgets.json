@@ -1,0 +1,7 @@
+{
+  "quickfill.dropdown.loading": "正在加载…",
+  "quickfill.dropdown.error": "出错了。请重试。",
+  "quickfill.dropdown.no-contacts": "没有可用的联系人",
+  "quickfill.dropdown.team.member.label": "名称",
+  "quickfill.dropdown.team.member.placeholder": "选择团队成员..."
+}

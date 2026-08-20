@@ -1,0 +1,7 @@
+{
+  "quickfill.dropdown.loading": "正在載入...",
+  "quickfill.dropdown.error": "發生錯誤，請再試一次。",
+  "quickfill.dropdown.no-contacts": "沒有可用的聯絡人",
+  "quickfill.dropdown.team.member.label": "名稱",
+  "quickfill.dropdown.team.member.placeholder": "選取團隊成員..."
+}

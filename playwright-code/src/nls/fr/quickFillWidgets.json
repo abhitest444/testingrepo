@@ -1,0 +1,7 @@
+{
+  "quickfill.dropdown.loading": "Chargement en cours...",
+  "quickfill.dropdown.error": "Un problème est survenu. Veuillez réessayer.",
+  "quickfill.dropdown.no-contacts": "Aucun contact",
+  "quickfill.dropdown.team.member.label": "Nom",
+  "quickfill.dropdown.team.member.placeholder": "Sélectionnez un collaborateur..."
+}

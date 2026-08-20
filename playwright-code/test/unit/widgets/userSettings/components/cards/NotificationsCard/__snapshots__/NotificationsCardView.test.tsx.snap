@@ -1,0 +1,318 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotificationsCardView Component Initialization renders and matches snapshot 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div>
+        <div
+          data-testid="header-row"
+        >
+          <span
+            class="intuit light body-1"
+          >
+            <strong
+              class="intuit light inherit medium"
+            >
+              Notifications
+            </strong>
+          </span>
+          <div
+            data-testid="actions"
+          >
+            <button
+              aria-label="edit-notifications"
+              class="idsF idsTSIconControl iconControlButton intuit light sizeSmall"
+            >
+              <svg
+                aria-hidden="true"
+                class=""
+                color="currentColor"
+                fill="none"
+                focusable="false"
+                height="20px"
+                viewBox="0 0 24 24"
+                width="20px"
+                xmlns="http://www.w3.org/2000/svg"
+              >
+                <path
+                  d="M20.912 4.527 19.5 3.111a2.978 2.978 0 0 0-2.12-.88 2.98 2.98 0 0 0-2.118.873L3.927 14.4a1 1 0 0 0-.227.375c-.01.03-.026.056-.034.085L2.24 20.52a1 1 0 0 0 1.211 1.215L9.11 20.33c.033-.008.062-.026.094-.037a1 1 0 0 0 .367-.223l11.331-11.3a3 3 0 0 0 .01-4.243ZM5.171 17.067l1.662 1.666.081.08-2.328.579.585-2.325Zm3.7.878-1.412-1.416-1.412-1.418 8.5-8.472 1.412 1.416 1.412 1.416-8.5 8.474ZM19.494 7.353l-.709.706-1.412-1.416-1.412-1.417.708-.706a1 1 0 0 1 1.412.003L19.5 5.94a1 1 0 0 1-.006 1.414Z"
+                  fill="currentColor"
+                />
+              </svg>
+            </button>
+          </div>
+        </div>
+        <div
+          data-testid="section"
+        >
+          <span
+            class="intuit light body-2 fw-600"
+          >
+            <strong
+              class="intuit light inherit demi"
+            >
+              Reminders
+            </strong>
+          </span>
+          <div
+            data-testid="kv"
+          >
+            <div
+              data-testid="field-group"
+            >
+              <span
+                class="intuit light body-4"
+              >
+                <strong
+                  class="intuit light inherit demi"
+                >
+                  Clock-in reminders
+                </strong>
+              </span>
+              <span
+                class="intuit light body-2"
+              >
+                <strong
+                  class="intuit light inherit medium"
+                >
+                  notifications.status.on.email.mobile.at
+                </strong>
+              </span>
+            </div>
+            <div
+              data-testid="field-group"
+            >
+              <span
+                class="intuit light body-4"
+              >
+                <strong
+                  class="intuit light inherit demi"
+                >
+                  Clock-out reminders
+                </strong>
+              </span>
+              <span
+                class="intuit light body-2"
+              >
+                <strong
+                  class="intuit light inherit medium"
+                >
+                  On, email at {time}
+                </strong>
+              </span>
+            </div>
+            <div
+              data-testid="field-group"
+            >
+              <span
+                class="intuit light body-4"
+              >
+                <strong
+                  class="intuit light inherit demi"
+                >
+                  Days of week
+                </strong>
+              </span>
+              <span
+                class="intuit light body-2"
+              >
+                <strong
+                  class="intuit light inherit medium"
+                >
+                  notifications.days.monday.friday
+                </strong>
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
+      <div
+        data-testid="header-row"
+      >
+        <span
+          class="intuit light body-1"
+        >
+          <strong
+            class="intuit light inherit medium"
+          >
+            Notifications
+          </strong>
+        </span>
+        <div
+          data-testid="actions"
+        >
+          <button
+            aria-label="edit-notifications"
+            class="idsF idsTSIconControl iconControlButton intuit light sizeSmall"
+          >
+            <svg
+              aria-hidden="true"
+              class=""
+              color="currentColor"
+              fill="none"
+              focusable="false"
+              height="20px"
+              viewBox="0 0 24 24"
+              width="20px"
+              xmlns="http://www.w3.org/2000/svg"
+            >
+              <path
+                d="M20.912 4.527 19.5 3.111a2.978 2.978 0 0 0-2.12-.88 2.98 2.98 0 0 0-2.118.873L3.927 14.4a1 1 0 0 0-.227.375c-.01.03-.026.056-.034.085L2.24 20.52a1 1 0 0 0 1.211 1.215L9.11 20.33c.033-.008.062-.026.094-.037a1 1 0 0 0 .367-.223l11.331-11.3a3 3 0 0 0 .01-4.243ZM5.171 17.067l1.662 1.666.081.08-2.328.579.585-2.325Zm3.7.878-1.412-1.416-1.412-1.418 8.5-8.472 1.412 1.416 1.412 1.416-8.5 8.474ZM19.494 7.353l-.709.706-1.412-1.416-1.412-1.417.708-.706a1 1 0 0 1 1.412.003L19.5 5.94a1 1 0 0 1-.006 1.414Z"
+                fill="currentColor"
+              />
+            </svg>
+          </button>
+        </div>
+      </div>
+      <div
+        data-testid="section"
+      >
+        <span
+          class="intuit light body-2 fw-600"
+        >
+          <strong
+            class="intuit light inherit demi"
+          >
+            Reminders
+          </strong>
+        </span>
+        <div
+          data-testid="kv"
+        >
+          <div
+            data-testid="field-group"
+          >
+            <span
+              class="intuit light body-4"
+            >
+              <strong
+                class="intuit light inherit demi"
+              >
+                Clock-in reminders
+              </strong>
+            </span>
+            <span
+              class="intuit light body-2"
+            >
+              <strong
+                class="intuit light inherit medium"
+              >
+                notifications.status.on.email.mobile.at
+              </strong>
+            </span>
+          </div>
+          <div
+            data-testid="field-group"
+          >
+            <span
+              class="intuit light body-4"
+            >
+              <strong
+                class="intuit light inherit demi"
+              >
+                Clock-out reminders
+              </strong>
+            </span>
+            <span
+              class="intuit light body-2"
+            >
+              <strong
+                class="intuit light inherit medium"
+              >
+                On, email at {time}
+              </strong>
+            </span>
+          </div>
+          <div
+            data-testid="field-group"
+          >
+            <span
+              class="intuit light body-4"
+            >
+              <strong
+                class="intuit light inherit demi"
+              >
+                Days of week
+              </strong>
+            </span>
+            <span
+              class="intuit light body-2"
+            >
+              <strong
+                class="intuit light inherit medium"
+              >
+                notifications.days.monday.friday
+              </strong>
+            </span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "dispatchSpy": [MockFunction],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "store": Object {
+    "@@observable": [Function],
+    "dispatch": [MockFunction],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
+  "unmount": [Function],
+}
+`;

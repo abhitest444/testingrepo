@@ -1,0 +1,7 @@
+{
+  "quickfill.dropdown.loading": "กำลังโหลด...",
+  "quickfill.dropdown.error": "เกิดข้อผิดพลาดบางอย่าง โปรดลองอีกครั้ง",
+  "quickfill.dropdown.no-contacts": "ไม่มีรายชื่อติดต่อที่ใช้ได้",
+  "quickfill.dropdown.team.member.label": "ชื่อ",
+  "quickfill.dropdown.team.member.placeholder": "เลือกสมาชิกทีม..."
+}

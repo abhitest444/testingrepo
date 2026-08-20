@@ -1,0 +1,23 @@
+{
+  "datagridview.columnheader.name": "名称",
+  "datagridview.columnheader.time": "時間",
+  "datagridview.columnheader.hours": "時間",
+  "datagridview.columnheader.customer": "顧客",
+  "datagridview.columnheader.service": "サービス",
+  "datagridview.columnheader.notes": "メモ",
+  "datagridview.columnheader.status": "状況",
+  "datagridview.columnheader.action": "アクション",
+  "datagridview.columnheader.class": "区分",
+  "datagridview.columnheader.billable": "支払請求可能",
+  "datagridview.columnheader.projects": "プロジェクト",
+  "datagridview.columnheader.location": "場所",
+  "datagridview.columnheader.task": "タスク",
+  "datagridview.actions.edit": "編集",
+  "datagridview.actions.delete": "削除",
+  "add.time": "時間を追加",
+  "single.time.entry": "1回の入力",
+  "weekly.time.entry": "週間タイムシート",
+  "tour.next": "次へ",
+  "tour.done": "完了",
+  "tour.back": "戻る"
+}

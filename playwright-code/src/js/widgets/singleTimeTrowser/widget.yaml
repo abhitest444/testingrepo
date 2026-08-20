@@ -1,0 +1,14 @@
+id: 'time-tracking-ui/singleTimeTrowser'
+classification: public
+version: 1.0.0
+responsive: true
+interface:
+  description: |
+    Displays Single Time Trowser
+
+main: './Widget'
+dependencies:
+  widgets:
+    - qbo-quickfills-ui/quickfills@1.0.0
+    - qbo-contacts-v2/contact-drawer@1.0.0
+    - css-uservoice-ui/feedback@1.0.0

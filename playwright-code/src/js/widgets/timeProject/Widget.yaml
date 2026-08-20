@@ -1,0 +1,13 @@
+id: 'time-tracking-ui/timeProject'
+classification: public
+version: 1.0.0
+interface:
+  description: |
+    Time Project Widget
+
+main: './Widget'
+dependencies:
+  widgets:
+    - smartdocs-web-platform/upload-documents@1.0.0
+    - smartdocs-web-platform/list-documents@1.0.0
+    - smartdocs-web-platform/preview-documents@1.0.0

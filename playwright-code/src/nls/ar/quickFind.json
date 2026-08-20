@@ -1,0 +1,22 @@
+{
+    "quickfind.dropdown.loading": "جارٍ التحميل...",
+    "quickfind.dropdown.error": "حدث خطأ ما. يُرجى المحاولة مرة أخرى.",
+    "quickfind.dropdown.no-contacts": "لا توجد جهات اتصال متاحة",
+    "quickfind.dropdown.team.member.label": "عضو فريق",
+    "quickfind.dropdown.team.member.placeholder": "حدد عضو الفريق ...",
+    "quickfind.dropdown.team.member.type.employee": "الموظف",
+    "quickfind.dropdown.team.member.type.vendor": "المورد",
+    "quickfind.dropdown.team.member.type.qbo.user": "مستخدم QBO",
+    "quickfill.dropdown.team.member.add.new": "إضافة جديد",
+    "quickfind.dropdown.customer.label": "العميل",
+    "quickfind.dropdown.customer.placeholder": "حدد عميلاً أو مشروعًا ...",
+    "quickfind.dropdown.customer.add.new": "إضافة عميل جديد",
+    "quickfind.dropdown.customer.customer.label": "العميل",
+    "quickfind.dropdown.customer.sub.customer.label": "عميل فرعي",
+    "quickfind.dropdown.customer.of.label": "من",
+    "quickfind.dropdown.customer.project.label": "المشروع",
+    "quickfind.dropdown.service.add.new": "إضافة عنصر خدمة جديد",
+    "quickfind.dropdown.class.add.new": "أضف فئة جديدة",
+    "quickfind.dropdown.location.add.new": "أضف موقعًا جديدًا",
+    "quickfind.dropdown.load.more": "تحميل المزيد"
+}

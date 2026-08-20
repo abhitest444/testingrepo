@@ -1,0 +1,13 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`BreaksCard Component Initialization renders and matches snapshot 1`] = `
+<div>
+  <div
+    data-testid="breaks-card-view"
+  >
+    <div>
+      Breaks View Component
+    </div>
+  </div>
+</div>
+`;

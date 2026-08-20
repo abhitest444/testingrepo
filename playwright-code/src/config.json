@@ -1,0 +1,277 @@
+{
+  "id": "time-tracking-ui",
+  "hasLayers": true,
+  "manifestVersion": "4",
+  "extensions": {
+    "routes": [
+      {
+        "path": "qtime",
+        "widget": {
+          "id": "time-tracking-ui/timetrackingui",
+          "appScreen": "shell"
+        }
+      },
+      {
+        "path": "timeactivity",
+        "widget": {
+          "id": "time-tracking-ui/singleTimeTrowser",
+          "appScreen": "trowserV2",
+          "extendedProperties": {
+            "showTrowser": true
+          }
+        }
+      },
+      {
+        "path": "timeimportagentic",
+        "widget": {
+          "id": "time-tracking-ui/timeImportAgentic",
+          "appScreen": "trowserV2",
+          "extendedProperties": {
+            "showTrowser": true
+          }
+        }
+      },
+      {
+        "path": "timetracking",
+        "widget": {
+          "id": "time-tracking-ui/weeklyTimeTrowser",
+          "appScreen": "trowserV2",
+          "extendedProperties": {
+            "showTrowser": true
+          }
+        }
+      },
+      {
+        "path": "timetracking/homepage",
+        "widget": {
+          "id": "time-tracking-ui/ttoHomePage",
+          "appScreen": "shell"
+        }
+      },
+      {
+        "path": "timetracking/detail",
+        "widget": {
+          "id": "timecapture-timeentries-ui/time-tracking-only-detail",
+          "appScreen": "shell"
+        },
+        "requiredPermissions": {
+          "irn:intuit::qbo:employees:list:ui": ["read"]
+        }
+      },
+      {
+        "path": "timetrackingsettings",
+        "widget": {
+          "id": "time-tracking-ui/timeTrackingSettings",
+          "appScreen": "shell"
+        }
+      },
+      {
+        "path": "timeclock",
+        "widget": {
+          "id": "time-tracking-ui/timeClock",
+          "appScreen": "shell"
+        }
+      },
+      {
+        "path": "timeentryweekly",
+        "widget": {
+          "id": "time-tracking-ui/weeklyTimeEntry",
+          "appScreen": "shell"
+        }
+      },
+      {
+        "path": "customfield",
+        "widget": {
+          "id": "time-tracking-ui/customField",
+          "appScreen": "shell"
+        }
+      },
+      {
+        "path": "quickfind",
+        "widget": {
+          "id": "time-tracking-ui/quickFind",
+          "appScreen": "shell"
+        }
+      },
+      {
+        "path": "time-tracking-ui/assignments",
+        "accessLevel": "GUEST",
+        "widget": {
+          "id": "time-tracking-ui/assignments",
+          "appScreen": "shell"
+        }
+      },
+      {
+        "path": "userSettings/:workerId/:workerType/:workerName",
+        "accessLevel": "GUEST",
+        "widget": {
+          "id": "time-tracking-ui/userSettings",
+          "appScreen": "shell"
+        }
+      },
+      {
+        "path": "time-tracking-ui/whosworking",
+        "accessLevel": "GUEST",
+        "widget": {
+          "id": "time-tracking-ui/whosworking",
+          "appScreen": "shell"
+        }
+      },
+      {
+        "path": "timeproject",
+        "accessLevel": "GUEST",
+        "widget": {
+          "id": "time-tracking-ui/timeProject",
+          "appScreen": "shell"
+        }
+      }
+    ]
+  },
+  "widgets": {
+    "time-tracking-ui/timetrackingui": {
+      "1.0.0": {
+        "descriptor": "time-tracking-ui/js/widgets/timetrackingui/widget"
+      }
+    },
+    "time-tracking-ui/weeklyTimeTrowser": {
+      "1.0.0": {
+        "descriptor": "time-tracking-ui/js/widgets/weeklyTimeTrowser/widget"
+      }
+    },
+    "time-tracking-ui/singleTimeTrowser": {
+      "1.0.0": {
+        "descriptor": "time-tracking-ui/js/widgets/singleTimeTrowser/widget"
+      }
+    },
+    "time-tracking-ui/whatsNewBannerPanel": {
+      "1.0.0": {
+        "descriptor": "time-tracking-ui/js/widgets/whatsNewBannerPanel/widget"
+      }
+    },
+    "time-tracking-ui/timeTrackingSettings": {
+      "1.0.0": {
+        "descriptor": "time-tracking-ui/js/widgets/timeTrackingSettings/widget"
+      }
+    },
+    "time-tracking-ui/timeClock": {
+      "1.0.0": {
+        "descriptor": "time-tracking-ui/js/widgets/timeClock/Widget"
+      }
+    },
+    "time-tracking-ui/timeImportAgentic": {
+      "1.0.0": {
+        "descriptor": "time-tracking-ui/js/widgets/timeImportAgentic/Widget"
+      }
+    },
+    "time-tracking-ui/breaks": {
+      "1.0.0": {
+        "descriptor": "time-tracking-ui/js/widgets/breaks/widget"
+      }
+    },
+    "time-tracking-ui/ttoHomePage": {
+      "1.0.0": {
+        "descriptor": "time-tracking-ui/js/widgets/ttoHomePage/widget"
+      }
+    },
+    "time-tracking-ui/weeklyTimeEntry": {
+      "1.0.0": {
+        "descriptor": "time-tracking-ui/js/widgets/weeklyTimeEntry/Widget"
+      }
+    },
+    "time-tracking-ui/customField": {
+      "1.0.0": {
+        "descriptor": "time-tracking-ui/js/widgets/customField/widget"
+      }
+    },
+    "time-tracking-ui/quickFind": {
+      "1.0.0": {
+        "descriptor": "time-tracking-ui/js/widgets/quickFind/Widget"
+      }
+    },
+    "time-tracking-ui/assignments": {
+      "1.0.0": {
+        "descriptor": "time-tracking-ui/js/widgets/assignments/widget"
+      }
+    },
+    "time-tracking-ui/userSettings": {
+      "1.0.0": {
+        "descriptor": "time-tracking-ui/js/widgets/userSettings/widget"
+      }
+    },
+    "time-tracking-ui/whosworking": {
+      "1.0.0": {
+        "descriptor": "time-tracking-ui/js/widgets/whosworking/widget"
+      }
+    },
+    "time-tracking-ui/TourFramework": {
+      "1.0.0": {
+        "descriptor": "time-tracking-ui/js/widgets/common/TourFramework/Widget"
+      }
+    },
+    "time-tracking-ui/timeEntryLocation": {
+      "1.0.0": {
+        "descriptor": "time-tracking-ui/js/widgets/timeEntryLocation/widget"
+      }
+    },
+    "time-tracking-ui/orchestrator": {
+      "1.0.0": {
+        "descriptor": "time-tracking-ui/js/widgets/qbtOrchestrator/widget"
+      }
+    },
+    "time-tracking-ui/timeProject": {
+      "1.0.0": {
+        "descriptor": "time-tracking-ui/js/widgets/timeProject/Widget"
+      }
+    }
+  },
+  "dependencies": {
+    "widgets": [
+      "time-tracking-ui/timetrackingui@1.0.0",
+      "time-tracking-ui/weeklyTimeTrowser@1.0.0",
+      "time-tracking-ui/singleTimeTrowser@1.0.0",
+      "qbo-quickfills-ui/quickfills@1.0.0",
+      "time-tracking-ui/timeTrackingSettings@1.0.0",
+      "time-tracking-ui/breaks@1.0.0",
+      "time/settings@1.0.0",
+      "qbtime-setup-ui/settings/kiosk@1.0.0",
+      "time-tracking-ui/timeClock@1.0.0",
+      "time-tracking-ui/timeImportAgentic@1.0.0",
+      "time-tracking-ui/ttoHomePage@1.0.0",
+      "time-tracking-ui/weeklyTimeEntry@1.0.0",
+      "time-tracking-ui/customField@1.0.0",
+      "eem/expense-tile@1.0.0",
+      "qbo-custom-fields-plugin/custom-fields-form@1.0.0",
+      "qbo-custom-fields-plugin/custom-fields-drawer@1.0.0",
+      "qbo-contacts-v2/contact-drawer@1.0.0",
+      "time-tracking-ui/quickFind@1.0.0",
+      "smartdocs-web-platform/unified-upload@1.0.0",
+      "smartdocs-web-platform/upload-documents@1.0.0",
+      "smartdocs-web-platform/list-documents@1.0.0",
+      "smartdocs-web-platform/preview-documents@1.0.0",
+      "qbo-ps-drawer-ui/product-service-drawer@1.0.0",
+      "qbo-location-drawer/locationdrawer@1.0.0",
+      "qbo-entity-drawer/classdrawer@1.0.0",
+      "css-uservoice-ui/feedback@1.0.0",
+      "employee-management-ui/hcmQualtricsSurvey@1.0.0",
+      "time-tracking-ui/assignments@1.0.0",
+      "time-tracking-ui/userSettings@1.0.0",
+      "variability@1.0.0",
+      "timecapture-timeentries-ui/time-tracking-only-detail@1.0.0",
+      "time-tracking-ui/whosworking@1.0.0",
+      "time-tracking-ui/timeEntryLocation@1.0.0",
+      "time-tracking-ui/TourFramework@1.0.0",
+      "team-management-ui/time-off-settings@1.0.0",
+      "qbo-products-ui/product-drawer@1.0.0",
+      "time-tracking-ui/orchestrator@1.0.0",
+      "time-tracking-ui/timeProject@1.0.0",
+      "employee-management-ui/inviteWrapper@1.0.0",
+      "timecapture-timecenter-ui/inviteTeamMembers@1.0.0",
+      "custom-defaults-ui/customdefaults@1.0.0"
+    ],
+    "decisions": ["hasPayroll", "isTimeElite", "isPayTypeEnabled"]
+  },
+  "extendedProperties": {
+    "appSecret": "preprdakyrespKVXsZKCr6jx7qnE2YkA3eVUzOSx",
+    "lastTimeEntryLookupIntervalInMonths": "2"
+  }
+}

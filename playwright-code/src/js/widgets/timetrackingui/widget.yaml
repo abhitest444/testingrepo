@@ -1,0 +1,12 @@
+id: 'time-tracking-ui/timetrackingui'
+classification: public
+version: 1.0.0
+interface:
+  description: |
+    Displays the Time Tracking experience, tab view
+
+main: './TimeTrackingUIWidget'
+dependencies:
+  widgets:
+    - time-tracking-ui/weeklyTimeTrowser@1.0.0
+    - time-tracking-ui/singleTimeTrowser@1.0.0

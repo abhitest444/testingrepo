@@ -1,0 +1,7 @@
+{
+  "quickfill.dropdown.loading": "로드 중...",
+  "quickfill.dropdown.error": "문제가 발생했습니다. 다시 시도하세요.",
+  "quickfill.dropdown.no-contacts": "사용 가능한 연락처 없음",
+  "quickfill.dropdown.team.member.label": "이름",
+  "quickfill.dropdown.team.member.placeholder": "팀원 선택..."
+}

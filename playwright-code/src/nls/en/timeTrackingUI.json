@@ -1,0 +1,9 @@
+{
+  "bill.rate.tooltip.vendor": "To permanently change the billable rate, go to the supplier profile.",
+  "weekly.unsaved.changes.content.team.member": "If you select a different employee or supplier, you'll lose the data you entered. Do you want to continue?",
+  "copy.last.week.no.result.error": "QuickBooks can't copy a previous timesheet because one doesn't exist yet for this employee or supplier.",
+  "cost_rate_vendor_field_info": "Don't use cost rates if you assign supplier bills or expenses to a project.",
+  "time.tracking.validation.same.currency": "You must choose a employee or supplier that uses local currency when time is billable.",
+  "tour.weekly.timesheet.step1.description": "We transformed the time entry centre with single and weekly entries.",
+  "tour.single.time.activity1.description": "We transformed the time entry centre with single and weekly entries."
+}

@@ -1,0 +1,11 @@
+id: 'time-tracking-ui/timeImportAgentic'
+classification: public
+version: 1.0.0
+interface:
+  description: |
+    Time import Agentic UI
+
+main: './Widget'
+dependencies:
+  widgets:
+    - smartdocs-web-platform/upload-documents@1.0.0

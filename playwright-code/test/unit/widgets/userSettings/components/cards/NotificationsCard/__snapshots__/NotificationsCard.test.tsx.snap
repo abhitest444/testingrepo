@@ -1,0 +1,20 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`NotificationsCard Component Initialization renders and matches snapshot 1`] = `
+<div>
+  <div
+    data-show-overtime-notifications="false"
+    data-show-schedule-notifications="false"
+    data-testid="notifications-card-view"
+  >
+    <div>
+      Notifications View Component
+    </div>
+    <button
+      data-testid="edit-button"
+    >
+      Edit
+    </button>
+  </div>
+</div>
+`;

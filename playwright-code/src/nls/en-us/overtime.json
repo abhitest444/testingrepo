@@ -1,0 +1,6 @@
+{
+  "overtime.landing.empty.description": "Create overtime policies and assign overtime rules to your team to customize how they accumulate overtime.",
+  "overtime.card.edit.info.text": "Overtime rules vary by location. Check your local laws before customizing.",
+  "overtime.settings.qualifiedOvertimeTracking.banner.prefix": "Starting Jan 1, 2026, the One, Big, Beautiful Bill Act lets employees deduct Fair Labor Standards Act qualified overtime on their federal tax returns. Use the new",
+  "overtime.settings.qualifiedOvertimeTracking.banner.suffix": "pay type to help keep your year-end reporting accurate. Qualified amounts will show on pay stubs and W-2s, but won't change how employee withholdings currently work."
+}

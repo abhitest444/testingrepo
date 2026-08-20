@@ -1,0 +1,21 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`TimeProjectZeroState should match snapshot 1`] = `
+<div>
+  <div
+    class="sc-bdVaJa ejYCZz"
+    data-testid="time-project-zero-state"
+  >
+    <h5
+      class="intuit light headline-5 demi"
+    >
+      No projects
+    </h5>
+    <span
+      class="intuit light body-2"
+    >
+      Add projects to start creating tracking actual time versus estimated time
+    </span>
+  </div>
+</div>
+`;

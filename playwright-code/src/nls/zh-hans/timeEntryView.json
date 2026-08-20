@@ -1,0 +1,23 @@
+{
+  "datagridview.columnheader.name": "名称",
+  "datagridview.columnheader.time": "时间",
+  "datagridview.columnheader.hours": "时数",
+  "datagridview.columnheader.customer": "客户",
+  "datagridview.columnheader.service": "服务",
+  "datagridview.columnheader.notes": "注释",
+  "datagridview.columnheader.status": "状态",
+  "datagridview.columnheader.action": "操作",
+  "datagridview.columnheader.class": "类别",
+  "datagridview.columnheader.billable": "可开票",
+  "datagridview.columnheader.projects": "项目",
+  "datagridview.columnheader.location": "位置",
+  "datagridview.columnheader.task": "任务",
+  "datagridview.actions.edit": "编辑",
+  "datagridview.actions.delete": "删除",
+  "add.time": "添加时间",
+  "single.time.entry": "单次分录",
+  "weekly.time.entry": "每周时间表",
+  "tour.next": "下一步",
+  "tour.done": "完成",
+  "tour.back": "返回"
+}

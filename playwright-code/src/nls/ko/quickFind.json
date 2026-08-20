@@ -1,0 +1,22 @@
+{
+    "quickfind.dropdown.loading": "로드 중...",
+    "quickfind.dropdown.error": "문제가 발생했습니다. 다시 시도하세요.",
+    "quickfind.dropdown.no-contacts": "사용 가능한 연락처 없음",
+    "quickfind.dropdown.team.member.label": "팀원",
+    "quickfind.dropdown.team.member.placeholder": "팀원 선택...",
+    "quickfind.dropdown.team.member.type.employee": "직원",
+    "quickfind.dropdown.team.member.type.vendor": "공급업체",
+    "quickfind.dropdown.team.member.type.qbo.user": "QBO 사용자",
+    "quickfill.dropdown.team.member.add.new": "새로 추가",
+    "quickfind.dropdown.customer.label": "고객",
+    "quickfind.dropdown.customer.placeholder": "고객 또는 프로젝트 선택...",
+    "quickfind.dropdown.customer.add.new": "새 고객 추가",
+    "quickfind.dropdown.customer.customer.label": "고객",
+    "quickfind.dropdown.customer.sub.customer.label": "하위 고객",
+    "quickfind.dropdown.customer.of.label": "중",
+    "quickfind.dropdown.customer.project.label": "프로젝트",
+    "quickfind.dropdown.service.add.new": "새 서비스 항목 추가",
+    "quickfind.dropdown.class.add.new": "새 과목 추가",
+    "quickfind.dropdown.location.add.new": "새 위치 추가",
+    "quickfind.dropdown.load.more": "추가 로드"
+}

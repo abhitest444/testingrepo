@@ -1,0 +1,22 @@
+{
+    "quickfind.dropdown.loading": "正在加载…",
+    "quickfind.dropdown.error": "出错了。请重试。",
+    "quickfind.dropdown.no-contacts": "没有可用的联系人",
+    "quickfind.dropdown.team.member.label": "团队成员",
+    "quickfind.dropdown.team.member.placeholder": "选择团队成员...",
+    "quickfind.dropdown.team.member.type.employee": "员工",
+    "quickfind.dropdown.team.member.type.vendor": "供应商",
+    "quickfind.dropdown.team.member.type.qbo.user": "QBO 用户",
+    "quickfill.dropdown.team.member.add.new": "添加新功能",
+    "quickfind.dropdown.customer.label": "客户",
+    "quickfind.dropdown.customer.placeholder": "选择客户或项目...",
+    "quickfind.dropdown.customer.add.new": "添加新客户",
+    "quickfind.dropdown.customer.customer.label": "客户",
+    "quickfind.dropdown.customer.sub.customer.label": "子客户",
+    "quickfind.dropdown.customer.of.label": "的",
+    "quickfind.dropdown.customer.project.label": "项目",
+    "quickfind.dropdown.service.add.new": "添加新的服务项目",
+    "quickfind.dropdown.class.add.new": "添加新分类",
+    "quickfind.dropdown.location.add.new": "添加新位置",
+    "quickfind.dropdown.load.more": "加载更多"
+}

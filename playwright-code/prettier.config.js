@@ -1,0 +1,32 @@
+const baseLintingPath = '{,!(**/__generated__|node_modules|dist|build|coverage|.git|reports|__generated__)/**/}';
+module.exports = {
+  overrides: [{
+    files: 'package.json',
+    options: {
+      parser: 'json-stringify'
+    }
+  },
+    {
+      files: `${baseLintingPath}*.yaml`,
+      options: {
+        parser: 'yaml'
+      }
+    },
+    {
+      files: `${baseLintingPath}*.scss`,
+      options: {
+        parser: 'scss'
+      }
+    },
+    {
+      files: `${baseLintingPath}*.json`,
+      options: {
+        parser: 'json'
+      }
+    }],
+  singleQuote: true,
+  trailingComma: 'all',
+  arrowParens: 'always',
+  printWidth: 80,
+  proseWrap: 'always',
+};

@@ -1,0 +1,25 @@
+/**
+ * CSS styles for WorkerListGrouped accordion components
+ * Used for styling IDS Accordion components that don't support styled-components
+ */
+
+.whos-working-grouped .accordion-item-header {
+  display: flex;
+  align-items: center;
+  border: none;
+  border-bottom: 1px solid #d4d7dc;
+  background: #eceef1;
+  height: unset;
+  padding: 30px;
+}
+
+.whos-working-grouped .accordion-item-body {
+  border-left: unset;
+}
+
+.whos-working-grouped
+  .accordion-item-body
+  [class*='AccordionItemBody-contentWrapper'] {
+  padding: unset;
+  border: unset;
+}

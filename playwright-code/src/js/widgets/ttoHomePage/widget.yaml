@@ -1,0 +1,12 @@
+id: 'time-tracking-ui/ttoHomePage'
+classification: public
+version: 1.0.0
+interface:
+  description: |
+    Displays the TTO Home Page widget for time tracking overview
+
+main: './TTOWidget'
+
+dependencies:
+  widgets:
+    - eem/expense-tile@1.0.0

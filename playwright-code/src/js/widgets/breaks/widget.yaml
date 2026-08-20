@@ -1,0 +1,8 @@
+id: 'time-tracking-ui/breaks'
+classification: public
+version: 1.0.0
+interface:
+  description: |
+    one stop widget for all time tracking needs
+
+main: './BreaksWidget'

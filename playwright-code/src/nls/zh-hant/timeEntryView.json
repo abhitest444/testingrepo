@@ -1,0 +1,23 @@
+{
+  "datagridview.columnheader.name": "名稱",
+  "datagridview.columnheader.time": "時間",
+  "datagridview.columnheader.hours": "時數",
+  "datagridview.columnheader.customer": "客戶",
+  "datagridview.columnheader.service": "服務",
+  "datagridview.columnheader.notes": "備註",
+  "datagridview.columnheader.status": "狀態",
+  "datagridview.columnheader.action": "動作",
+  "datagridview.columnheader.class": "類別",
+  "datagridview.columnheader.billable": "可計費",
+  "datagridview.columnheader.projects": "項目",
+  "datagridview.columnheader.location": "位置",
+  "datagridview.columnheader.task": "工作",
+  "datagridview.actions.edit": "編輯",
+  "datagridview.actions.delete": "刪除",
+  "add.time": "新增時間",
+  "single.time.entry": "單一工時分錄",
+  "weekly.time.entry": "每週工時記錄表",
+  "tour.next": "下一頁",
+  "tour.done": "完成",
+  "tour.back": "返回"
+}

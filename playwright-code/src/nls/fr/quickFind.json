@@ -1,0 +1,22 @@
+{
+    "quickfind.dropdown.loading": "Chargement en cours...",
+    "quickfind.dropdown.error": "Un problème est survenu. Veuillez réessayer.",
+    "quickfind.dropdown.no-contacts": "Aucun contact",
+    "quickfind.dropdown.team.member.label": "Collaborateur",
+    "quickfind.dropdown.team.member.placeholder": "Sélectionnez un collaborateur...",
+    "quickfind.dropdown.team.member.type.employee": "Employé",
+    "quickfind.dropdown.team.member.type.vendor": "Fournisseur",
+    "quickfind.dropdown.team.member.type.qbo.user": "Utilisateur QB",
+    "quickfill.dropdown.team.member.add.new": "Ajouter",
+    "quickfind.dropdown.customer.label": "Client",
+    "quickfind.dropdown.customer.placeholder": "Sélectionnez un client ou un projet...",
+    "quickfind.dropdown.customer.add.new": "Ajouter un client",
+    "quickfind.dropdown.customer.customer.label": "Client",
+    "quickfind.dropdown.customer.sub.customer.label": "Client rattaché",
+    "quickfind.dropdown.customer.of.label": "de",
+    "quickfind.dropdown.customer.project.label": "Projet",
+    "quickfind.dropdown.service.add.new": "Ajouter un service",
+    "quickfind.dropdown.class.add.new": "Ajouter une classe",
+    "quickfind.dropdown.location.add.new": "Ajouter un site",
+    "quickfind.dropdown.load.more": "Charger plus de données"
+}

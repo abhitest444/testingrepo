@@ -1,0 +1,34 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`MaintenancePage matches snapshot 1`] = `
+<div>
+  <div
+    aria-live="polite"
+    class="sc-bdVaJa fBzBim"
+    data-automation-id="maintenance-full-page"
+    role="alert"
+  >
+    <img
+      alt=""
+      aria-hidden="true"
+      class="sc-bwzfXH caewYg"
+      src="test-file-stub"
+    />
+    <h1
+      class="sc-htpNat fNJQoB"
+    >
+      NLS maintenance_full_page_title undefined
+    </h1>
+    <p
+      class="sc-bxivhb cYkiOj"
+    >
+      NLS maintenance_full_page_body undefined
+    </p>
+    <p
+      class="sc-ifAKCX vEVju"
+    >
+      NLS maintenance_full_page_thanks undefined
+    </p>
+  </div>
+</div>
+`;

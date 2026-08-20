@@ -1,0 +1,22 @@
+{
+    "quickfind.dropdown.loading": "正在載入...",
+    "quickfind.dropdown.error": "發生錯誤，請再試一次。",
+    "quickfind.dropdown.no-contacts": "沒有可用的聯絡人",
+    "quickfind.dropdown.team.member.label": "團隊成員",
+    "quickfind.dropdown.team.member.placeholder": "選取團隊成員...",
+    "quickfind.dropdown.team.member.type.employee": "員工",
+    "quickfind.dropdown.team.member.type.vendor": "供應商",
+    "quickfind.dropdown.team.member.type.qbo.user": "QBO 用戶",
+    "quickfill.dropdown.team.member.add.new": "新增項目",
+    "quickfind.dropdown.customer.label": "客戶",
+    "quickfind.dropdown.customer.placeholder": "選取一個客戶或項目...",
+    "quickfind.dropdown.customer.add.new": "新增客戶",
+    "quickfind.dropdown.customer.customer.label": "客戶",
+    "quickfind.dropdown.customer.sub.customer.label": "子客戶",
+    "quickfind.dropdown.customer.of.label": "中的",
+    "quickfind.dropdown.customer.project.label": "專案",
+    "quickfind.dropdown.service.add.new": "新增服務項目",
+    "quickfind.dropdown.class.add.new": "新增類別",
+    "quickfind.dropdown.location.add.new": "新增位置",
+    "quickfind.dropdown.load.more": "載入更多"
+}

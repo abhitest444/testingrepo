@@ -1,0 +1,7 @@
+button.gm-control-active {
+  min-width: 40px;
+
+  &:focus {
+    box-shadow: none;
+  }
+}

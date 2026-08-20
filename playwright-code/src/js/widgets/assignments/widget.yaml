@@ -1,0 +1,12 @@
+id: 'time-tracking-ui/assignments'
+classification: public
+version: 1.0.0
+interface:
+  description: |
+    assignments
+
+main: './Assignments'
+dependencies:
+  widgets:
+    - qbo-contacts-v2/contact-drawer@1.0.0
+    - employee-management-ui/inviteWrapper@1.0.0

@@ -1,0 +1,93 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WeeklyTimeEntryHeader should render correctly with default state 1`] = `
+<div>
+  <div
+    class="sc-bdVaJa hDykwF"
+    data-testid="weekly-time-entry-header"
+  >
+    <div
+      class="sc-bwzfXH gSiHkA"
+    >
+      <div
+        class="sc-bxivhb gZepDM"
+      >
+        <div
+          data-testid="team-member-dropdown"
+        >
+          TeamMemberDropdown: 
+          Time For User
+        </div>
+      </div>
+      <div
+        data-testid="week-navigator"
+      >
+        WeekNavigator
+      </div>
+      <button
+        data-priority="secondary"
+        data-purpose="passive"
+        data-testid="reset-button"
+      >
+        weekly.time.entry.reset
+      </button>
+    </div>
+    <div
+      class="sc-htpNat bTFZhX"
+    >
+      <button
+        aria-label="weekly.time.entry.keyboard.shortcuts"
+        data-testid="icon-control-weekly.time.entry.keyboard.shortcuts"
+      >
+        <span
+          data-testid="keyboard-icon"
+        >
+          Keyboard
+        </span>
+      </button>
+      <button
+        aria-label="weekly.time.entry.export"
+        data-testid="icon-control-weekly.time.entry.export"
+      >
+        <span
+          data-testid="export-icon"
+        >
+          Export
+        </span>
+      </button>
+      <button
+        aria-label="weekly.time.entry.print"
+        data-testid="icon-control-weekly.time.entry.print"
+      >
+        <span
+          data-testid="print-icon"
+        >
+          Print
+        </span>
+      </button>
+      <div>
+        <button
+          aria-label="weekly.time.entry.settings"
+          data-testid="icon-control-weekly.time.entry.settings"
+        >
+          <span
+            data-testid="settings-icon"
+          >
+            Settings
+          </span>
+        </button>
+      </div>
+      <button
+        aria-label="weekly.time.entry.show.panel"
+        data-testid="icon-control-weekly.time.entry.show.panel"
+      >
+        <span
+          data-testid="menu-expand-icon"
+        >
+          MenuExpand
+        </span>
+      </button>
+    </div>
+  </div>
+</div>
+`;

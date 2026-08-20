@@ -1,0 +1,11 @@
+id: 'time-tracking-ui/timeClock'
+classification: public
+version: 1.0.0
+responsive: true
+interface:
+  description: |
+    Displays Time Clock Widget with both action button and clock form functionality
+main: './Widget'
+dependencies:
+  widgets:
+    - qbo-quickfills-ui/quickfills@1.0.0

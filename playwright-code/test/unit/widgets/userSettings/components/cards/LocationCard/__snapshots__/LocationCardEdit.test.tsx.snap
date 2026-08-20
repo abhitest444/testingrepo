@@ -1,0 +1,423 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`LocationCardEdit Rendering renders and matches snapshot 1`] = `
+Object {
+  "asFragment": [Function],
+  "baseElement": <body>
+    <div>
+      <div>
+        <h6
+          data-testid="h6"
+        >
+          <strong>
+            Location
+          </strong>
+        </h6>
+        
+        <div
+          data-testid="section"
+        >
+          <div
+            data-testid="b2"
+          >
+            <strong>
+              Location tracking
+            </strong>
+          </div>
+          <div
+            data-testid="location-settings-group"
+          >
+            <div
+              aria-label="location-settings-type"
+              data-disabled="false"
+              data-name="location-settings-type"
+              data-vertical="true"
+              role="radiogroup"
+            >
+              <label
+                for="radio-location-settings-type-company"
+              >
+                <input
+                  checked=""
+                  id="radio-location-settings-type-company"
+                  name="location-settings-type"
+                  type="radio"
+                  value="company"
+                />
+                <span>
+                  <span>
+                    Use company settings
+                     
+                    <a
+                      data-testid="company-settings-link"
+                      href="#"
+                    >
+                      Manage company settings
+                    </a>
+                  </span>
+                </span>
+              </label>
+              <label
+                for="radio-location-settings-type-custom"
+              >
+                <input
+                  id="radio-location-settings-type-custom"
+                  name="location-settings-type"
+                  type="radio"
+                  value="custom"
+                />
+                <span>
+                  Use custom rules for this person
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <hr
+          data-testid="divider"
+        />
+        <div
+          data-testid="custom-rules-section"
+        >
+          <div
+            data-testid="section-title"
+          >
+            <div
+              data-testid="b2"
+            >
+              <strong>
+                Custom location tracking rules
+              </strong>
+            </div>
+          </div>
+          <div
+            data-testid="location-settings-group"
+          >
+            <div
+              aria-label="location-tracking-options"
+              data-disabled="true"
+              data-name="location-tracking-option"
+              data-vertical="true"
+              role="radiogroup"
+            >
+              <label
+                for="radio-location-tracking-option-REQUIRED"
+              >
+                <input
+                  disabled=""
+                  id="radio-location-tracking-option-REQUIRED"
+                  name="location-tracking-option"
+                  type="radio"
+                  value="REQUIRED"
+                />
+                <span>
+                  Required
+                </span>
+                <span
+                  data-testid="description-REQUIRED"
+                >
+                  Workers must share their location when they clock in or out.
+                </span>
+              </label>
+              <label
+                for="radio-location-tracking-option-OPTIONAL"
+              >
+                <input
+                  checked=""
+                  disabled=""
+                  id="radio-location-tracking-option-OPTIONAL"
+                  name="location-tracking-option"
+                  type="radio"
+                  value="OPTIONAL"
+                />
+                <span>
+                  Optional
+                </span>
+                <span
+                  data-testid="description-OPTIONAL"
+                >
+                  Workers can choose whether to share their location.
+                </span>
+              </label>
+              <label
+                for="radio-location-tracking-option-OFF"
+              >
+                <input
+                  disabled=""
+                  id="radio-location-tracking-option-OFF"
+                  name="location-tracking-option"
+                  type="radio"
+                  value="OFF"
+                />
+                <span>
+                  Off
+                </span>
+                <span
+                  data-testid="description-OFF"
+                >
+                  Workers' locations are not tracked.
+                </span>
+              </label>
+            </div>
+          </div>
+        </div>
+        <div
+          data-testid="action-buttons"
+        >
+          <button
+            aria-label="cancel-location"
+            data-loading="false"
+            data-priority="tertiary"
+          >
+            Cancel
+          </button>
+          <button
+            aria-label="save-location"
+            data-loading="false"
+            disabled=""
+          >
+            Save
+          </button>
+        </div>
+      </div>
+    </div>
+  </body>,
+  "container": <div>
+    <div>
+      <h6
+        data-testid="h6"
+      >
+        <strong>
+          Location
+        </strong>
+      </h6>
+      
+      <div
+        data-testid="section"
+      >
+        <div
+          data-testid="b2"
+        >
+          <strong>
+            Location tracking
+          </strong>
+        </div>
+        <div
+          data-testid="location-settings-group"
+        >
+          <div
+            aria-label="location-settings-type"
+            data-disabled="false"
+            data-name="location-settings-type"
+            data-vertical="true"
+            role="radiogroup"
+          >
+            <label
+              for="radio-location-settings-type-company"
+            >
+              <input
+                checked=""
+                id="radio-location-settings-type-company"
+                name="location-settings-type"
+                type="radio"
+                value="company"
+              />
+              <span>
+                <span>
+                  Use company settings
+                   
+                  <a
+                    data-testid="company-settings-link"
+                    href="#"
+                  >
+                    Manage company settings
+                  </a>
+                </span>
+              </span>
+            </label>
+            <label
+              for="radio-location-settings-type-custom"
+            >
+              <input
+                id="radio-location-settings-type-custom"
+                name="location-settings-type"
+                type="radio"
+                value="custom"
+              />
+              <span>
+                Use custom rules for this person
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <hr
+        data-testid="divider"
+      />
+      <div
+        data-testid="custom-rules-section"
+      >
+        <div
+          data-testid="section-title"
+        >
+          <div
+            data-testid="b2"
+          >
+            <strong>
+              Custom location tracking rules
+            </strong>
+          </div>
+        </div>
+        <div
+          data-testid="location-settings-group"
+        >
+          <div
+            aria-label="location-tracking-options"
+            data-disabled="true"
+            data-name="location-tracking-option"
+            data-vertical="true"
+            role="radiogroup"
+          >
+            <label
+              for="radio-location-tracking-option-REQUIRED"
+            >
+              <input
+                disabled=""
+                id="radio-location-tracking-option-REQUIRED"
+                name="location-tracking-option"
+                type="radio"
+                value="REQUIRED"
+              />
+              <span>
+                Required
+              </span>
+              <span
+                data-testid="description-REQUIRED"
+              >
+                Workers must share their location when they clock in or out.
+              </span>
+            </label>
+            <label
+              for="radio-location-tracking-option-OPTIONAL"
+            >
+              <input
+                checked=""
+                disabled=""
+                id="radio-location-tracking-option-OPTIONAL"
+                name="location-tracking-option"
+                type="radio"
+                value="OPTIONAL"
+              />
+              <span>
+                Optional
+              </span>
+              <span
+                data-testid="description-OPTIONAL"
+              >
+                Workers can choose whether to share their location.
+              </span>
+            </label>
+            <label
+              for="radio-location-tracking-option-OFF"
+            >
+              <input
+                disabled=""
+                id="radio-location-tracking-option-OFF"
+                name="location-tracking-option"
+                type="radio"
+                value="OFF"
+              />
+              <span>
+                Off
+              </span>
+              <span
+                data-testid="description-OFF"
+              >
+                Workers' locations are not tracked.
+              </span>
+            </label>
+          </div>
+        </div>
+      </div>
+      <div
+        data-testid="action-buttons"
+      >
+        <button
+          aria-label="cancel-location"
+          data-loading="false"
+          data-priority="tertiary"
+        >
+          Cancel
+        </button>
+        <button
+          aria-label="save-location"
+          data-loading="false"
+          disabled=""
+        >
+          Save
+        </button>
+      </div>
+    </div>
+  </div>,
+  "debug": [Function],
+  "dispatchSpy": [MockFunction],
+  "findAllByAltText": [Function],
+  "findAllByDisplayValue": [Function],
+  "findAllByLabelText": [Function],
+  "findAllByPlaceholderText": [Function],
+  "findAllByRole": [Function],
+  "findAllByTestId": [Function],
+  "findAllByText": [Function],
+  "findAllByTitle": [Function],
+  "findByAltText": [Function],
+  "findByDisplayValue": [Function],
+  "findByLabelText": [Function],
+  "findByPlaceholderText": [Function],
+  "findByRole": [Function],
+  "findByTestId": [Function],
+  "findByText": [Function],
+  "findByTitle": [Function],
+  "getAllByAltText": [Function],
+  "getAllByDisplayValue": [Function],
+  "getAllByLabelText": [Function],
+  "getAllByPlaceholderText": [Function],
+  "getAllByRole": [Function],
+  "getAllByTestId": [Function],
+  "getAllByText": [Function],
+  "getAllByTitle": [Function],
+  "getByAltText": [Function],
+  "getByDisplayValue": [Function],
+  "getByLabelText": [Function],
+  "getByPlaceholderText": [Function],
+  "getByRole": [Function],
+  "getByTestId": [Function],
+  "getByText": [Function],
+  "getByTitle": [Function],
+  "getState": [Function],
+  "queryAllByAltText": [Function],
+  "queryAllByDisplayValue": [Function],
+  "queryAllByLabelText": [Function],
+  "queryAllByPlaceholderText": [Function],
+  "queryAllByRole": [Function],
+  "queryAllByTestId": [Function],
+  "queryAllByText": [Function],
+  "queryAllByTitle": [Function],
+  "queryByAltText": [Function],
+  "queryByDisplayValue": [Function],
+  "queryByLabelText": [Function],
+  "queryByPlaceholderText": [Function],
+  "queryByRole": [Function],
+  "queryByTestId": [Function],
+  "queryByText": [Function],
+  "queryByTitle": [Function],
+  "rerender": [Function],
+  "store": Object {
+    "@@observable": [Function],
+    "dispatch": [MockFunction],
+    "getState": [Function],
+    "replaceReducer": [Function],
+    "subscribe": [Function],
+  },
+  "unmount": [Function],
+}
+`;

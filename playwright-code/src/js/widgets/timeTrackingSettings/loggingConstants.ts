@@ -1,0 +1,15 @@
+const EMPLOYER_OVERTIME_NOTIFICATIONS_PREFIX = 'EmployerOvertimeNotifications';
+
+/**
+ * Flat logging constants for Employer Overtime Notifications.
+ * Only export constants that are actively used in the codebase.
+ */
+export const EMPLOYER_OVERTIME_NOTIFICATIONS_LOGGING = {
+  // Navigation / Lifecycle
+  VIEW_MOUNTED: `${EMPLOYER_OVERTIME_NOTIFICATIONS_PREFIX}.VIEW_MOUNTED`,
+  EDIT_MOUNTED: `${EMPLOYER_OVERTIME_NOTIFICATIONS_PREFIX}.EDIT_MOUNTED`,
+
+  // User Interactions
+  DAILY_PANEL_TOGGLED: `${EMPLOYER_OVERTIME_NOTIFICATIONS_PREFIX}.DAILY_PANEL_TOGGLED`,
+  WEEKLY_PANEL_TOGGLED: `${EMPLOYER_OVERTIME_NOTIFICATIONS_PREFIX}.WEEKLY_PANEL_TOGGLED`,
+} as const;

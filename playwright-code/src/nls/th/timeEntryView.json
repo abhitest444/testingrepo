@@ -1,0 +1,23 @@
+{
+  "datagridview.columnheader.name": "ชื่อ",
+  "datagridview.columnheader.time": "เวลา",
+  "datagridview.columnheader.hours": "ชั่วโมง",
+  "datagridview.columnheader.customer": "ลูกค้า",
+  "datagridview.columnheader.service": "บริการ",
+  "datagridview.columnheader.notes": "หมายเหตุ",
+  "datagridview.columnheader.status": "สถานะ",
+  "datagridview.columnheader.action": "การดำเนินการ",
+  "datagridview.columnheader.class": "กลุ่ม",
+  "datagridview.columnheader.billable": "ออกใบแจ้งหนี้ได้",
+  "datagridview.columnheader.projects": "โครงการ",
+  "datagridview.columnheader.location": "สถานที่ตั้ง",
+  "datagridview.columnheader.task": "งาน",
+  "datagridview.actions.edit": "แก้ไข",
+  "datagridview.actions.delete": "ลบ",
+  "add.time": "เพิ่มเวลา",
+  "single.time.entry": "เข้าใช้ครั้งเดียว",
+  "weekly.time.entry": "บันทึกการทำงานรายสัปดาห์",
+  "tour.next": "ถัดไป",
+  "tour.done": "เสร็จ",
+  "tour.back": "ย้อนกลับ"
+}

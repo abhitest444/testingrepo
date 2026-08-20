@@ -1,0 +1,23 @@
+{
+  "datagridview.columnheader.name": "Name",
+  "datagridview.columnheader.time": "Time",
+  "datagridview.columnheader.hours": "Hours",
+  "datagridview.columnheader.customer": "Customer",
+  "datagridview.columnheader.service": "Service",
+  "datagridview.columnheader.notes": "Notes",
+  "datagridview.columnheader.status": "Status",
+  "datagridview.columnheader.action": "Action",
+  "datagridview.columnheader.class": "Class",
+  "datagridview.columnheader.billable": "Billable",
+  "datagridview.columnheader.projects": "Projects",
+  "datagridview.columnheader.location": "Location",
+  "datagridview.columnheader.task": "Task",
+  "datagridview.actions.edit": "Edit",
+  "datagridview.actions.delete": "Delete",
+  "add.time": "Add time",
+  "single.time.entry": "Single time entry",
+  "weekly.time.entry": "Weekly timesheet",
+  "tour.next": "Next",
+  "tour.done": "Done",
+  "tour.back": "Back"
+}

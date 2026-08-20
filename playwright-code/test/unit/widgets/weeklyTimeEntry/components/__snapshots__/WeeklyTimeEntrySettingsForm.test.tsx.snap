@@ -1,0 +1,39 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`WeeklyTimeEntrySettingsForm Snapshot Tests matches snapshot with default props 1`] = `
+<div>
+  <div
+    class="sc-bdVaJa eJSEBo"
+  >
+    <div
+      data-testid="weekly-time-entry-weekday-settings"
+    >
+      <span
+        data-testid="hide-weekdays"
+      >
+        {"isSundayHidden":false,"isMondayHidden":false,"isTuesdayHidden":false,"isWednesdayHidden":false,"isThursdayHidden":false,"isFridayHidden":false,"isSaturdayHidden":false}
+      </span>
+      <span
+        data-testid="tracking-points"
+      >
+        {"SUNDAY_SETTING":{"org":"sbseg","purpose":"prod","scope":"time","scope_area":"timeentrymanagement","screen":"weekly_time_entry","action":"engaged","object":"component","object_detail":"sunday_setting","ui_action":"clicked","ui_object":"checkbox","ui_object_detail":"sunday_setting","ui_access_point":"settings_panel"},"MONDAY_SETTING":{"org":"sbseg","purpose":"prod","scope":"time","scope_area":"timeentrymanagement","screen":"weekly_time_entry","action":"engaged","object":"component","object_detail":"monday_setting","ui_action":"clicked","ui_object":"checkbox","ui_object_detail":"monday_setting","ui_access_point":"settings_panel"},"TUESDAY_SETTING":{"org":"sbseg","purpose":"prod","scope":"time","scope_area":"timeentrymanagement","screen":"weekly_time_entry","action":"engaged","object":"component","object_detail":"tuesday_setting","ui_action":"clicked","ui_object":"checkbox","ui_object_detail":"tuesday_setting","ui_access_point":"settings_panel"},"WEDNESDAY_SETTING":{"org":"sbseg","purpose":"prod","scope":"time","scope_area":"timeentrymanagement","screen":"weekly_time_entry","action":"engaged","object":"component","object_detail":"wednesday_setting","ui_action":"clicked","ui_object":"checkbox","ui_object_detail":"wednesday_setting","ui_access_point":"settings_panel"},"THURSDAY_SETTING":{"org":"sbseg","purpose":"prod","scope":"time","scope_area":"timeentrymanagement","screen":"weekly_time_entry","action":"engaged","object":"component","object_detail":"thursday_setting","ui_action":"clicked","ui_object":"checkbox","ui_object_detail":"thursday_setting","ui_access_point":"settings_panel"},"FRIDAY_SETTING":{"org":"sbseg","purpose":"prod","scope":"time","scope_area":"timeentrymanagement","screen":"weekly_time_entry","action":"engaged","object":"component","object_detail":"friday_setting","ui_action":"clicked","ui_object":"checkbox","ui_object_detail":"friday_setting","ui_access_point":"settings_panel"},"SATURDAY_SETTING":{"org":"sbseg","purpose":"prod","scope":"time","scope_area":"timeentrymanagement","screen":"weekly_time_entry","action":"engaged","object":"component","object_detail":"saturday_setting","ui_action":"clicked","ui_object":"checkbox","ui_object_detail":"saturday_setting","ui_access_point":"settings_panel"}}
+      </span>
+      <span
+        data-testid="settings-state"
+      >
+        {"weekdays":{"isSundayEnabled":true,"isMondayEnabled":true,"isTuesdayEnabled":true,"isWednesdayEnabled":true,"isThursdayEnabled":true,"isFridayEnabled":true,"isSaturdayEnabled":true}}
+      </span>
+      <span
+        data-testid="show-days-of-week-preferences"
+      >
+        undefined
+      </span>
+      <button
+        data-testid="update-weekday-button"
+      >
+        Update Monday
+      </button>
+    </div>
+  </div>
+</div>
+`;

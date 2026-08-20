@@ -1,0 +1,12 @@
+id: 'time-tracking-ui/weeklyTimeTrowser'
+classification: public
+version: 1.0.0
+interface:
+  description: |
+    Displays Weekly Time Trowser
+
+main: './Widget'
+dependencies:
+  widgets:
+    - qbo-quickfills-ui/quickfills@1.0.0
+    - css-uservoice-ui/feedback@1.0.0

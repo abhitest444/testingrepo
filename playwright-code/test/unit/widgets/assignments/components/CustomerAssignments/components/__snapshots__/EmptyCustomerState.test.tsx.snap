@@ -1,0 +1,25 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`EmptyCustomerState should match snapshot 1`] = `
+<div>
+  <div
+    class="sc-bdVaJa kxaMzw"
+  >
+    <div
+      class="sc-bwzfXH SiaeB"
+    >
+      <div
+        data-testid="utility-checklist-icon"
+      >
+        Icon
+      </div>
+    </div>
+    <h2>
+      Assign customers and projects to team members, now in QuickBooks
+    </h2>
+    <p>
+      Assign customers and projects to employees and contractors so everyone knows what to do. Pre-fill custom fields such as service item, class, department, or location in timesheets for each customer or project. Team members track time only against what they're assigned, which makes time tracking faster and more accurate.
+    </p>
+  </div>
+</div>
+`;

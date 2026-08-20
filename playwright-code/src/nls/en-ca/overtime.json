@@ -1,0 +1,5 @@
+{
+  "overtime.landing.empty.description": "Create overtime policies and assign overtime rules to your team to customize how they accumulate overtime.",
+  "overtime.card.edit.info.text": "Overtime rules vary by location. Check your local laws before customizing.",
+  "overtime.settings.qualifiedOvertimeTracking.banner.suffix": "pay type to help keep your year-end reporting accurate. Qualified amounts will show on pay stubs and W-2s, but won't change how employee withholdings currently work."
+}

@@ -1,0 +1,22 @@
+{
+    "quickfind.dropdown.loading": "Lädt ...",
+    "quickfind.dropdown.error": "Es ist ein Problem aufgetreten. Bitte versuche es erneut.",
+    "quickfind.dropdown.no-contacts": "Keine Kontakte verfügbar",
+    "quickfind.dropdown.team.member.label": "Teammitglied",
+    "quickfind.dropdown.team.member.placeholder": "Wählen Sie ein Teammitglied aus...",
+    "quickfind.dropdown.team.member.type.employee": "Mitarbeiter",
+    "quickfind.dropdown.team.member.type.vendor": "Kreditor",
+    "quickfind.dropdown.team.member.type.qbo.user": "QBO-Benutzer",
+    "quickfill.dropdown.team.member.add.new": "Neu hinzufügen",
+    "quickfind.dropdown.customer.label": "Kunde",
+    "quickfind.dropdown.customer.placeholder": "Wählen Sie einen Kunden oder ein Projekt aus...",
+    "quickfind.dropdown.customer.add.new": "Neuen Kunden hinzufügen",
+    "quickfind.dropdown.customer.customer.label": "Kunde",
+    "quickfind.dropdown.customer.sub.customer.label": "Unterkunde",
+    "quickfind.dropdown.customer.of.label": "von",
+    "quickfind.dropdown.customer.project.label": "Projekt",
+    "quickfind.dropdown.service.add.new": "Neuen Serviceposten hinzufügen",
+    "quickfind.dropdown.class.add.new": "Neue Klasse hinzufügen",
+    "quickfind.dropdown.location.add.new": "Neuen Standort hinzufügen",
+    "quickfind.dropdown.load.more": "Mehr laden"
+}

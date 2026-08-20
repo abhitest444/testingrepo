@@ -1,0 +1,36 @@
+{
+  "clients": [
+    {
+      "appId": "time-tracking-ui",
+      "assetId": "8506191389517858617",
+      "apiKey": "preprdakyrespKVXsZKCr6jx7qnE2YkA3eVUzOSx"
+    }
+  ],
+  "proxyMappings": [
+    {
+      "name": "QL",
+      "enabled": true,
+      "from": {
+        "uri": "https://qb-time-tracking-e2e.api.intuit.com"
+      },
+      "to": {
+        "uri": "https://local.intuit.com:8443"
+      },
+      "gateway": true,
+      "forwardCookies": true,
+      "favorite": true,
+      "forwardAllRealms": true,
+      "useCBTs": true
+    }
+  ],
+  "pathMappings": [
+    {
+      "fromPath": "qb-time-tracking-e2e",
+      "toUri": "https://local.intuit.com:8443",
+      "ignoreAuthPaths": "/health/**",
+      "forwardCookies": true,
+      "useCBTs": true,
+      "reverseProxy": false
+    }
+  ]
+}

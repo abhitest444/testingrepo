@@ -1,0 +1,23 @@
+{
+  "datagridview.columnheader.name": "이름",
+  "datagridview.columnheader.time": "시간",
+  "datagridview.columnheader.hours": "시간",
+  "datagridview.columnheader.customer": "고객",
+  "datagridview.columnheader.service": "서비스",
+  "datagridview.columnheader.notes": "참고",
+  "datagridview.columnheader.status": "상태",
+  "datagridview.columnheader.action": "작업",
+  "datagridview.columnheader.class": "과목",
+  "datagridview.columnheader.billable": "청구 가능",
+  "datagridview.columnheader.projects": "프로젝트",
+  "datagridview.columnheader.location": "위치",
+  "datagridview.columnheader.task": "작업",
+  "datagridview.actions.edit": "편집",
+  "datagridview.actions.delete": "삭제",
+  "add.time": "시간 추가",
+  "single.time.entry": "단일 시간 항목",
+  "weekly.time.entry": "주간 타임시트",
+  "tour.next": "다음",
+  "tour.done": "완료",
+  "tour.back": "뒤로"
+}

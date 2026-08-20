@@ -1,0 +1,7 @@
+{
+  "quickfill.dropdown.loading": "جارٍ التحميل...",
+  "quickfill.dropdown.error": "حدث خطأ ما. يُرجى المحاولة مرة أخرى.",
+  "quickfill.dropdown.no-contacts": "لا توجد جهات اتصال متاحة",
+  "quickfill.dropdown.team.member.label": "الاسم",
+  "quickfill.dropdown.team.member.placeholder": "حدد عضو الفريق ..."
+}

@@ -1,0 +1,22 @@
+{
+    "quickfind.dropdown.loading": "กำลังโหลด...",
+    "quickfind.dropdown.error": "เกิดข้อผิดพลาดบางอย่าง โปรดลองอีกครั้ง",
+    "quickfind.dropdown.no-contacts": "ไม่มีรายชื่อติดต่อที่ใช้ได้",
+    "quickfind.dropdown.team.member.label": "สมาชิกทีม",
+    "quickfind.dropdown.team.member.placeholder": "เลือกสมาชิกทีม...",
+    "quickfind.dropdown.team.member.type.employee": "พนักงาน",
+    "quickfind.dropdown.team.member.type.vendor": "ซัพพลายเออร์",
+    "quickfind.dropdown.team.member.type.qbo.user": "ผู้ใช้ QBO",
+    "quickfill.dropdown.team.member.add.new": "เพิ่มใหม่",
+    "quickfind.dropdown.customer.label": "ลูกค้า",
+    "quickfind.dropdown.customer.placeholder": "เลือกลูกค้าหรือโครงการ...",
+    "quickfind.dropdown.customer.add.new": "เพิ่มลูกค้าใหม่",
+    "quickfind.dropdown.customer.customer.label": "ลูกค้า",
+    "quickfind.dropdown.customer.sub.customer.label": "ลูกค้าย่อย",
+    "quickfind.dropdown.customer.of.label": "ของ",
+    "quickfind.dropdown.customer.project.label": "โปรเจกต์",
+    "quickfind.dropdown.service.add.new": "เพิ่มรายการบริการใหม่",
+    "quickfind.dropdown.class.add.new": "เพิ่มกลุ่มใหม่",
+    "quickfind.dropdown.location.add.new": "เพิ่มตำแหน่งที่ตั้งใหม่",
+    "quickfind.dropdown.load.more": "โหลดเพิ่มเติม"
+}
