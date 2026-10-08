@@ -13,18 +13,20 @@
     "strict": true,
     "forceConsistentCasingInFileNames": true,
     "module": "esnext",
-    "moduleResolution": "node",
+    "moduleResolution": "bundler",
     "resolveJsonModule": true,
     "isolatedModules": true,
     "noEmit": true,
     "jsx": "react",
-    "baseUrl": ".",
     "paths": {
       "src": [
-        "src"
+        "./src"
       ],
       "web-shell-core/*": [
-        "node_modules/@appfabric/web-shell-core/types/web-shell-core/*"
+        "./node_modules/@appfabric/web-shell-core/types/web-shell-core/*"
+      ],
+      "*": [
+        "./*"
       ]
     }
   },
@@ -39,6 +41,8 @@
   "exclude": [
     "node_modules",
     "dist",
-    "build"
+    "build",
+    "test/automation/playwright/salesforce",
+    "test/automation/playwright/camr"
   ]
 }
