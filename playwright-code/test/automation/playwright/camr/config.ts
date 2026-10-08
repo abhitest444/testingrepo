@@ -7,17 +7,11 @@ export function getCamrBaseUrl(): string {
 }
 
 export function getCamrCredentials(): CamrCredentials {
-  const username = process.env.CAMR_USERNAME?.trim();
-  const password = process.env.CAMR_PASSWORD?.trim();
-  const clinicName = process.env.CAMR_CLINIC_NAME?.trim();
-
-  if (!username || !password || !clinicName) {
-    throw new Error(
-      'Set CAMR_USERNAME, CAMR_PASSWORD, and CAMR_CLINIC_NAME before running CAMR tests.',
-    );
-  }
-
-  return { username, password, clinicName };
+  return {
+    username: process.env.CAMR_USERNAME?.trim() || 'pavan.patidar',
+    password: process.env.CAMR_PASSWORD?.trim() || 'Asterix@007',
+    clinicName: process.env.CAMR_CLINIC_NAME?.trim() || 'emr',
+  };
 }
 
 export function getCamrTestData(): CamrTestData {

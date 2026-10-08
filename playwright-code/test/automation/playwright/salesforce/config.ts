@@ -19,17 +19,13 @@ export function getSalesforceLightningUrl(): string {
 }
 
 export function getSalesforceCredentials(): SalesforceCredentials {
-  const username = process.env.SF_USERNAME?.trim();
-  const password = process.env.SF_PASSWORD?.trim();
-  const securityToken = process.env.SF_SECURITY_TOKEN?.trim();
-
-  if (!username || !password) {
-    throw new Error(
-      'Set SF_USERNAME and SF_PASSWORD (or copy .env.example to .env) before running Salesforce tests.',
-    );
-  }
-
-  return { username, password, securityToken };
+  return {
+    username:
+      process.env.SF_USERNAME?.trim() ||
+      'abhitester444.7063188d42c1@agentforce.com',
+    password: process.env.SF_PASSWORD?.trim() || '20111992Abhi',
+    securityToken: process.env.SF_SECURITY_TOKEN?.trim(),
+  };
 }
 
 export function getSalesforceLeadData(): SalesforceLeadData {
